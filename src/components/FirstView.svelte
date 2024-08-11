@@ -1,14 +1,3 @@
-<script lang="ts">
-  import { onMount } from "svelte";
-
-  onMount(() => {
-    document.addEventListener('DOMContentLoaded', () => {
-      const video = document.getElementById('fv-video') as HTMLVideoElement
-      video.play()
-    })
-  })
-</script>
-
 <div class="h-[400px] relative">
   <video id="fv-video" class="absolute top-0 left-0 w-full h-[400px] object-cover" autoplay loop muted playsinline>
     <source src="/firstview.mp4" type="video/mp4">
