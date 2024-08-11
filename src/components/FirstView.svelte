@@ -1,7 +1,11 @@
 <script lang="ts">
-  document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('fv-video') as HTMLVideoElement
-    video.play()
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('fv-video') as HTMLVideoElement
+      video.play()
+    })
   })
 </script>
 
