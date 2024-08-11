@@ -3,7 +3,7 @@
   import MessageSection from "../components/MessageSection.svelte";
 </script>
 
-<div class="py-4">
+<div>
   <FirstView />
   <MessageSection />
 </div>
