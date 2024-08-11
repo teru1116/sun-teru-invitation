@@ -1,5 +1,12 @@
+<script lang="ts">
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('fv-video') as HTMLVideoElement
+    video.play()
+  })
+</script>
+
 <div class="h-[400px] relative">
-  <video class="absolute top-0 left-0 w-full h-[400px] object-cover" autoplay loop muted>
+  <video id="fv-video" class="absolute top-0 left-0 w-full h-[400px] object-cover" autoplay loop muted>
     <source src="/firstview.mp4" type="video/mp4">
   </video>
   <div
