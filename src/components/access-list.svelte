@@ -19,7 +19,7 @@
           <a href="https://maps.app.goo.gl/Usg5oSBZfNFsBzjY6" class="underline">横浜東口駅前広場（横浜中央郵便局前）</a>
         </p>
         <small class="text-sm text-textGray">
-          各便の人数のバランスを図るため、お乗りいただきたい便を後日ご連絡いたします
+          送迎バスをご利用の場合、各便の人数のバランスを図るため、お乗りいただきたい便を後日ご連絡いたします
         </small>
       </div>
     </li>
