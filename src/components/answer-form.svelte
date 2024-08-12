@@ -27,7 +27,7 @@
 
   <fieldset class="required">
     <legend>電話番号</legend>
-    <input type="text" name="電話番号" placeholder="09012345678" required>
+    <input type="tel" name="電話番号" placeholder="09012345678" required>
   </fieldset>
 
   <fieldset class="required">
@@ -60,10 +60,10 @@
     />
   </fieldset>
 
-  <div class="px-6 sm:px-0">
+  <div class="">
     <button
       type="submit"
-      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-8 bg-action disabled:bg-[#6e7881] hover:opacity-80 text-white py-2 px-6 rounded font-bold tracking-wide"
+      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-8 bg-action disabled:bg-[#6e7881] hover:opacity-80 text-white py-4 px-6 rounded font-bold tracking-wide"
     >
       招待状に回答する
     </button>
