@@ -1,9 +1,9 @@
 <script lang="ts">
-  import FirstView from "../components/firstview.svelte";
-  import MessageSection from "../components/message-section.svelte";
-  import InformationSection from "../components/information-list.svelte";
+  import FirstView from "../components/first-view.svelte";
+  import WelcomeMessage from "../components/welcome-message.svelte";
+  import InformationList from "../components/information-list.svelte";
   import GoogleMapSection from "../components/googlemap.svelte";
-  import Access from "../components/access.svelte";
+  import AccessList from "../components/access-list.svelte";
   import AnswerForm from "../components/answer-form.svelte";
 </script>
 
@@ -11,13 +11,13 @@
   <FirstView />
   <div class="px-4 mt-10">
     <section class="mb-10">
-      <MessageSection />
+      <WelcomeMessage />
     </section>
     <section class="mb-10">
-      <InformationSection />
+      <InformationList />
     </section>
     <section class="mb-10">
-      <Access />
+      <AccessList />
     </section>
   </div>
   <GoogleMapSection />
