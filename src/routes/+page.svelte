@@ -2,12 +2,18 @@
   import FirstView from "../components/FirstView.svelte";
   import MessageSection from "../components/MessageSection.svelte";
   import InformationSection from "../components/InformationSection.svelte";
+  import GoogleMapSection from "../components/GoogleMapSection.svelte";
 </script>
 
 <div>
   <FirstView />
-  <MessageSection />
-  <div class="px-6">
-    <InformationSection />
+  <div class="px-4 mt-10">
+    <section class="mb-10">
+      <MessageSection />
+    </section>
+    <section class="mb-10">
+      <InformationSection />
+    </section>
   </div>
+  <GoogleMapSection />
 </div>

@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  section {
+    @apply border border-solid border-borderGray rounded-md px-6 py-8 shadow-md drop-shadow-md
+  }
   h1 {
     @apply text-3xl tracking-wider
   }
