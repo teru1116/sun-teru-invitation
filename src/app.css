@@ -34,3 +34,13 @@
     @apply mt-2 text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded
   }
 }
+
+summary {
+  list-style: none; /* マーカーを消す */
+  -webkit-appearance: none; /* iOS Safariでのデフォルトスタイルをリセット */
+  display: list-item; /* マーカーを消すための補助 */
+}
+
+summary::-webkit-details-marker {
+  display: none; /* デフォルトのマーカーを消す */
+}
