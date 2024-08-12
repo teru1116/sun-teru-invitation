@@ -21,4 +21,16 @@
   p {
     @apply text-base tracking-wide leading-7
   }
+  form fieldset {
+    @apply flex flex-col mb-8
+  }
+  form fieldset legend {
+    @apply text-sm font-bold tracking-wide
+  }
+  form fieldset.required legend {
+    @apply after:content-['必須'] after:text-errorRed after:text-sm after:tracking-wide after:ml-2
+  }
+  form input {
+    @apply mt-2 text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded
+  }
 }

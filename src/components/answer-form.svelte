@@ -1,0 +1,62 @@
+<script lang="ts">
+  import PostalCodeInput, { type PostalCodeInputChangeEvent } from "./postal-code-input.svelte";
+  import PrefectureSelect from "./prefecture-select.svelte";
+  import RadioButtonGroup from "./radio-button-group.svelte";
+
+  let postalCode = ''
+  let prefecture = ''
+  let address = ''
+
+  function onPostalCodeChange(event: CustomEvent<PostalCodeInputChangeEvent>) {
+    prefecture = event.detail.prefecture
+    address = event.detail.city
+  }
+
+  function onPrefectureSelect(event: CustomEvent<string>) {
+    prefecture = event.detail
+  }
+</script>
+<form>
+  <fieldset class="required">
+    <legend>ご出欠</legend>
+    <RadioButtonGroup
+      name="ご出欠"
+      options={['ご出席', 'ご欠席'].map(value => ({ label: value, value }))}
+    />
+  </fieldset>
+
+  <fieldset class="required">
+    <legend>電話番号</legend>
+    <input type="text" name="電話番号" placeholder="09012345678" required>
+  </fieldset>
+
+  <fieldset class="required">
+    <legend>メールアドレス</legend>
+    <input type="email" name="email" placeholder="example@gmail.com" autocomplete="email" required>
+  </fieldset>
+
+  <fieldset class="required">
+    <legend>郵便番号</legend>
+    <PostalCodeInput postalCode={postalCode} on:change={onPostalCodeChange} />
+  </fieldset>
+
+  <fieldset class="required">
+    <legend class="mb-2">都道府県</legend>
+    <!-- 郵便番号のオートコンプリートにより、市区町村までの住所が補完されるため、都道府県と市区町村のinputはautocompleteを設定していない -->
+    <input type="text" name="都道府県" class="hidden" value={prefecture}>
+    <PrefectureSelect prefecture={prefecture} on:change={onPrefectureSelect} />
+  </fieldset>
+
+  <fieldset class="required">
+    <legend>住所</legend>
+    <input type="text" name="住所" placeholder="千代田区千代田1-1" required bind:value={address}>
+  </fieldset>
+
+  <fieldset class="required">
+    <legend>送迎バス</legend>
+    <RadioButtonGroup
+      name="送迎バス"
+      options={['希望する', '希望しない'].map(value => ({ label: value, value }))}
+    />
+  </fieldset>
+</form>

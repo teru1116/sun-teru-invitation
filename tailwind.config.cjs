@@ -7,6 +7,7 @@ module.exports = {
       textGray: '#081018b2',
       borderGray: '#DDDDDD',
       white: '#FFFFFF',
+      errorRed: '#d64000',
     },
     extend: {},
   },
