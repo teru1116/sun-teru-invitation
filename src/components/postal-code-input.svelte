@@ -41,4 +41,4 @@
   }
 </script>
 
-<input type="text" name="郵便番号" placeholder="100-0001" autocomplete="postal-code" required bind:value={postalCode} on:blur={onChange}>
+<input type="tel" name="郵便番号" placeholder="100-0001" autocomplete="postal-code" required bind:value={postalCode} on:blur={onChange}>
