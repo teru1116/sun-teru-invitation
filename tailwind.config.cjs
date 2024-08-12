@@ -6,6 +6,7 @@ module.exports = {
       textBlack: '#222222',
       textGray: '#081018b2',
       borderGray: '#DDDDDD',
+      bgGray: '#f6f8fb',
       white: '#FFFFFF',
       action: '#4352F5',
       errorRed: '#d64000',
