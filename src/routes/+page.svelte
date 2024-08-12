@@ -1,5 +1,4 @@
-<script>
-  import FirstView from "../components/firstview.svelte";
+<script lang="ts">
   import MessageSection from "../components/message-section.svelte";
   import InformationSection from "../components/information-list.svelte";
   import GoogleMapSection from "../components/googlemap.svelte";
@@ -8,7 +7,6 @@
 </script>
 
 <div>
-  <FirstView />
   <div class="px-4 mt-10">
     <section class="mb-10">
       <MessageSection />

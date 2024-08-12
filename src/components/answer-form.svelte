@@ -59,4 +59,13 @@
       options={['希望する', '希望しない'].map(value => ({ label: value, value }))}
     />
   </fieldset>
+
+  <div class="px-6 sm:px-0">
+    <button
+      type="submit"
+      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-8 bg-action disabled:bg-[#6e7881] hover:opacity-80 text-white py-2 px-6 rounded font-bold tracking-wide"
+    >
+      招待状に回答する
+    </button>
+  </div>
 </form>
