@@ -43,7 +43,7 @@
     バグのご報告、その他お気付きの点はこちらからご連絡ください
   </small>
   <textarea
-    class="text-sm tracking-wide py-2 px-4 border border-solid border-borderGray rounded w-full"
+    class="text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded w-full"
   />
   <div class="flex items-center justify-end">
     <button class="mt-2 text-sm px-4 py-1 border border-solid border-action text-action bg-white rounded-md">
