@@ -8,7 +8,7 @@
     class="absolute top-0 left-0 w-full h-full"
     style="background-color: rgba(0, 0, 0, 0.4);"
   />
-  <div class="absolute top-0 left-0 w-full h-full text-white flex flex-col justify-between pt-12 pb-6">
+  <div class="quicksand absolute top-0 left-0 w-full h-full text-white flex flex-col justify-between pt-12 pb-6">
     <h1 class="text-center text-4xl mb-8">
       INVITATION
     </h1>
