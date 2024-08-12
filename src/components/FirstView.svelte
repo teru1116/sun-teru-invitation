@@ -1,3 +1,5 @@
+<script lang="ts"></script>
+
 <div class="h-[400px] relative">
   <video id="fv-video" class="absolute top-0 left-0 w-full h-[400px] object-cover" autoplay loop muted playsinline>
     <source src="/firstview.mp4" type="video/mp4">

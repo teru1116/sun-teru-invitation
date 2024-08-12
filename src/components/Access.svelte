@@ -1,3 +1,5 @@
+<script lang="ts"></script>
+
 <div>
   <h2>
     会場への行き方
