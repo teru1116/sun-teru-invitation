@@ -1,4 +1,8 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import Modal from "./modal.svelte";
+
+  let showModal = false
+</script>
 
 <div>
   <h2>
@@ -16,7 +20,10 @@
         <p>
           横浜駅から無料送迎バスがございます<br>
           9:00 9:30 10:00の3便<br>
-          <a href="https://maps.app.goo.gl/Usg5oSBZfNFsBzjY6" class="underline">横浜駅西口南10番出口</a>
+          <button class="underline" on:click={() => (showModal = true)}>横浜駅西口南10番出口</button>
+          <Modal bind:showModal>
+            <img src="/busstop.png" alt="横浜駅西口南10番出口の地図">
+          </Modal>
         </p>
         <small class="text-sm text-textGray">
           送迎バスをご利用の場合 各便の人数のバランスを図るため お乗りいただきたい便を後日ご連絡いたします
