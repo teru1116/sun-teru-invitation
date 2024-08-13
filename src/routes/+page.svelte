@@ -27,7 +27,7 @@
         ご回答
       </h2>
       <small class="text-sm leading-6 text-textGray block mb-6 -mt-4">
-        お手数ではございますが、ご都合の程を<br>
+        お手数ではございますが ご都合の程を<br>
         10月17日迄に賜りますようお願い申し上げます
       </small>
       <AnswerForm />
@@ -40,7 +40,7 @@
     制作者: 楠本輝也
   </p>
   <small class="block mt-2 text-xs text-textGray mb-2">
-    バグのご報告、その他お気付きの点はこちらからご連絡ください
+    バグのご報告 その他お気付きの点はこちらからご連絡ください
   </small>
   <textarea
     class="text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded w-full"
