@@ -1,4 +1,8 @@
 <script lang="ts">
+  // https://svelte.dev/examples/modal
+
+  import CloseSvg from "./icons/close-svg.svelte";
+
 	export let showModal = false
 
 	let dialog: HTMLDialogElement
@@ -39,7 +43,7 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
-  class="max-w-[90vw] rounded-md"
+  class="max-w-[90vw] rounded-md overflow-visible"
 >
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
@@ -47,13 +51,13 @@
     class="relative"
   >
     <slot />
-    <!-- svelte-ignore a11y-autofocus -->
-		<button
-      autofocus
-      on:click={() => dialog.close()}
-      class="absolute right-0 -top-8 w-6 h-6"
-    >
-      x
-    </button>
   </div>
+	<!-- svelte-ignore a11y-autofocus -->
+	<button
+		autofocus
+		on:click={() => dialog.close()}
+		class="absolute right-0 -top-7 w-6 h-6 flex items-center justify-center"
+	>
+		<CloseSvg color="#FFF" />
+	</button>
 </dialog>
