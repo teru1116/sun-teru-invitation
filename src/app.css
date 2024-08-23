@@ -45,8 +45,8 @@ summary::-webkit-details-marker {
   display: none; /* デフォルトのマーカーを消す */
 }
 
-.quicksand {
-  font-family: "Quicksand", sans-serif;
+.cinzel {
+  font-family: "Cinzel", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
