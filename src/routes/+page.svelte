@@ -7,10 +7,10 @@
   import AnswerForm from "../components/answer-form.svelte";
 </script>
 
-<div>
+<div class="bg-bgGray pb-10">
   <FirstView />
-  <div class="px-4 mt-10">
-    <section class="mb-10">
+  <div class="px-4">
+    <section class="mb-10 -mt-10">
       <WelcomeMessage />
     </section>
     <section class="mb-10">
@@ -22,11 +22,11 @@
   </div>
   <GoogleMapSection />
   <div class="px-4 mt-10">
-    <section class="mb-10">
+    <section>
       <h2>
         ご回答
       </h2>
-      <small class="text-sm leading-6 text-textGray block mb-6 -mt-4">
+      <small class="text-sm tracking-wide leading-6 text-textGray block mb-6 -mt-4">
         お手数ではございますが ご都合の程を<br>
         10月17日迄に賜りますようお願い申し上げます
       </small>
@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<footer class="bg-[#F7F7F7] px-4 pt-8 pb-12">
+<footer class="bg-light px-4 pt-8 pb-12">
   <p class="text-sm">
     制作者: 楠本輝也
   </p>
@@ -46,7 +46,7 @@
     class="text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded w-full"
   />
   <div class="flex items-center justify-end">
-    <button class="mt-2 text-sm px-4 py-1 border border-solid border-action text-action bg-white rounded-md">
+    <button class="mt-2 text-sm px-4 py-1 border border-solid border-primary text-primary bg-white rounded-md">
       送信
     </button>
   </div>

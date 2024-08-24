@@ -36,6 +36,11 @@
   </fieldset>
 
   <fieldset class="required">
+    <legend>誕生日</legend>
+    <input type="email" name="email" placeholder="11月16日" autocomplete="email" required>
+  </fieldset>
+
+  <fieldset class="required">
     <legend>郵便番号</legend>
     <PostalCodeInput postalCode={postalCode} on:change={onPostalCodeChange} />
   </fieldset>
@@ -67,7 +72,7 @@
         お手数ですが 下記のページからご入力ください<br>
         会場に直接送信されます
       </small>
-      <a href="https://www.tg-wn.com/guest/allergy-entry/SSY0000564090-$2y$10$kCMQzEbbtzcVNiwxvOc5deaKlgRqkvz0QRpxud6Uj6U6gMHO1o3i" target="_blank" class="underline text-action tracking-wide">
+      <a href="https://www.tg-wn.com/guest/allergy-entry/SSY0000564090-$2y$10$kCMQzEbbtzcVNiwxvOc5deaKlgRqkvz0QRpxud6Uj6U6gMHO1o3i" target="_blank" class="underline text-primary tracking-wide">
         食事制限の事前登録
       </a>
     </div>
@@ -76,7 +81,7 @@
   <div class="">
     <button
       type="submit"
-      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-8 bg-action disabled:bg-[#6e7881] hover:opacity-80 text-white py-4 px-6 rounded font-bold tracking-wide"
+      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-8 bg-primary disabled:bg-[#6e7881] hover:opacity-80 text-white py-4 px-6 rounded font-bold tracking-wide"
     >
       招待状に回答する
     </button>

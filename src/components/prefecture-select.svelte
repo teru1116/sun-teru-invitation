@@ -89,7 +89,7 @@
 </style>
 
 <details bind:this={details} class="sm:relative">
-  <summary class="flex items-center justify-between py-2 px-4 bg-white rounded fill-action border border-solid border-borderGray cursor-pointer" on:click={onSummeryClick}>
+  <summary class="flex items-center justify-between py-2 px-4 bg-white rounded fill-primary border border-solid border-borderGray cursor-pointer" on:click={onSummeryClick}>
     {prefecture || '都道府県を選択'}
     <ArrowForwardSvg size={20} />
   </summary>
@@ -107,9 +107,9 @@
             {#each options as [area], index}
               <li
                 data-last={index === options.length - 1}
-                class="leading-[1.8] bg-white data-[last=false]:border-b border-solid border-bgGray fill-action sm:hover:bg-bgGray"
+                class="leading-[1.8] bg-white data-[last=false]:border-b border-solid border-bgGray fill-primary sm:hover:bg-bgGray"
               >
-                <button type="button" on:click={() => selectArea(area)} class="flex items-center justify-between py-2 px-6 w-full h-full hover:text-action">
+                <button type="button" on:click={() => selectArea(area)} class="flex items-center justify-between py-2 px-6 w-full h-full hover:text-primary">
                   {area}
                   <ArrowForwardSvg size={20} />
                 </button>
@@ -119,13 +119,13 @@
         </div>
       {:else}
         <div class="flex items-center h-16 px-6 bg-white sm:hidden">
-          <button type="button" on:click={closeDetails} class="fill-action">
+          <button type="button" on:click={closeDetails} class="fill-primary">
             <CloseSvg size={24} color="#4352F5" />
           </button>
         </div>
         <div>
           <div class="px-6 py-2 sm:hidden">
-            <button type="button" on:click={clearSelectedArea} class="flex items-center fill-action">
+            <button type="button" on:click={clearSelectedArea} class="flex items-center fill-primary">
               <ArrowBackSvg size={24} />
               <p class="ml-2">戻る</p>
             </button>
@@ -134,9 +134,9 @@
             {#each prefectureOptions[1] as prefecture, index}
               <li
                 data-last={index === options.length - 1}
-                class="leading-[1.8] bg-white data-[last=false]:border-b border-solid border-bgGray fill-action"
+                class="leading-[1.8] bg-white data-[last=false]:border-b border-solid border-bgGray fill-primary"
               >
-                <button type="button" on:click={() => onPrefectureSelect(prefecture)} class="flex items-center justify-between py-2 px-6 w-full h-full hover:text-action">
+                <button type="button" on:click={() => onPrefectureSelect(prefecture)} class="flex items-center justify-between py-2 px-6 w-full h-full hover:text-primary">
                   {prefecture}
                   <ArrowForwardSvg size={20} />
                 </button>

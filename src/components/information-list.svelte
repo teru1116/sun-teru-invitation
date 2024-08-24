@@ -54,7 +54,7 @@
         </div>
         <p class="w-[calc(100%_-_120px)] whitespace-pre-wrap">
           {#if href}
-            <a href={href} target="_blank" class="break-words whitespace-normal underline hover:text-action">
+            <a href={href} target="_blank" class="break-words whitespace-normal underline hover:text-primary">
               {description}
             </a>
           {:else}

@@ -4,7 +4,7 @@
 
 @layer base {
   section {
-    @apply border border-solid border-borderGray rounded-md px-6 py-8 shadow-md drop-shadow-md
+    @apply border border-solid border-borderGray bg-white rounded-md px-6 py-8 shadow-md drop-shadow-md
   }
   h1 {
     @apply text-3xl tracking-wider
@@ -20,6 +20,9 @@
   }
   p {
     @apply text-base tracking-wide leading-7
+  }
+  a {
+    @apply hover:text-primary
   }
   form fieldset {
     @apply flex flex-col mb-8

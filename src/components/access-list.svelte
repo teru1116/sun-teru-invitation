@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArrowForwardSvg from "./icons/arrow-forward-svg.svelte";
   import Modal from "./modal.svelte";
 
   let showModal = false
@@ -20,7 +21,12 @@
         <p>
           横浜駅から無料送迎バスがございます<br>
           9:00 9:30 10:00の3便<br>
-          <button class="underline" on:click={() => (showModal = true)}>横浜駅西口南10番出口</button>
+          <button class="underline flex items-center gap-x-1 hover:text-primary hover:fill-primary" on:click={() => (showModal = true)}>
+            <p>
+              横浜駅西口南10番出口
+            </p>
+            <ArrowForwardSvg size={16} />
+          </button>
           <Modal bind:showModal>
             <img src="/busstop.png" alt="横浜駅西口南10番出口の地図">
           </Modal>
