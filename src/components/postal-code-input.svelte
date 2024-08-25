@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
   export type PostalCodeInputChangeEvent = {
+    postalCode: string
     prefecture: string
     city: string
   }
@@ -35,6 +36,7 @@
     const data = await response.json()
 
     dispatch('change', {
+      postalCode,
       prefecture: data[0].pref,
       city: `${data[0].city}${data[0].town}`
     })
