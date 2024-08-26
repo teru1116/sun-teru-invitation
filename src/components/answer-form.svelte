@@ -83,12 +83,12 @@
 
   <fieldset class="required">
     <legend>メールアドレス</legend>
-    <input type="email" name="email" placeholder="example@gmail.com" autocomplete="email" required bind:value={email} on:blur={saveFormDataToLocal}>
+    <input type="email" name="メールアドレス" placeholder="example@gmail.com" autocomplete="email" required bind:value={email} on:blur={saveFormDataToLocal}>
   </fieldset>
 
   <fieldset class="required">
     <legend>誕生日</legend>
-    <input type="email" name="email" placeholder="11/16" autocomplete="email" required bind:value={birthday} on:blur={saveFormDataToLocal}>
+    <input type="text" name="誕生日" placeholder="11/16" autocomplete="off" required bind:value={birthday} on:blur={saveFormDataToLocal}>
   </fieldset>
 
   <fieldset class="required">
@@ -137,7 +137,7 @@
     </div>
   </fieldset>
 
-  <div class="relative pt-6">
+  <div class="relative">
     {#if disabled}
       <p class="absolute text-errorRed text-sm">必須項目をすべて入力してください</p>
     {/if}
