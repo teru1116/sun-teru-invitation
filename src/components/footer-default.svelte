@@ -1,3 +1,13 @@
+<script lang="ts">
+  import { STORAGE_KEY_PREFIX } from "../const";
+
+  let text = ''
+
+  function saveFormDataToLocal() {    
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}feedback`, text)
+  }
+</script>
+
 <footer class="bg-light px-4 pt-8 pb-12">
   <p class="text-sm">
     制作者: 楠本輝也
@@ -5,9 +15,7 @@
   <small class="block mt-2 text-xs text-textGray mb-2">
     バグのご報告 その他お気付きの点はこちらからご連絡ください
   </small>
-  <textarea
-    class="text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded w-full"
-  />
+  <textarea class="text-base tracking-wide py-2 px-4 border border-solid border-borderGray rounded w-full" bind:value={text} on:blur={saveFormDataToLocal} />
   <div class="flex items-center justify-end">
     <button class="mt-2 text-sm px-4 py-1 border border-solid border-primary text-primary bg-white rounded-md">
       送信

@@ -14,8 +14,8 @@
     }
 
     // 隠しコマンド
-    if (localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) === '安心安全') {
-      completed = true
+    if (localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) === 'アドリブで') {
+      completed = false
     }
   })
 </script>
