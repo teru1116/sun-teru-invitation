@@ -14,7 +14,7 @@
     }
 
     // 隠しコマンド
-    if (localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) === '安心安全') {
+    if (localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) === '安心安全') {
       completed = true
     }
   })
