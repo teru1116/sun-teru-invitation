@@ -23,7 +23,7 @@
 <div class="bg-bgGray">
   <FirstView />
   {#if !completed}
-    <div class="mb-10">
+    <div class="pb-10">
       <BeforeAnswerContent />
     </div>
   {:else}
