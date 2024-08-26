@@ -1,5 +1,5 @@
 <p class="text-center text-textBlack">
-  佐久間様<br>
+  松田様<br>
   <br>
   いかがお過ごしでしょうか<br>
   このたび 私たちは結婚式を<br>

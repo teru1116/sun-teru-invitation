@@ -1,25 +1,29 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { STORAGE_KEY_PREFIX } from "../const";
   import PostalCodeInput, { type PostalCodeInputChangeEvent } from "./postal-code-input.svelte";
   import PrefectureSelect from "./prefecture-select.svelte";
   import RadioButtonGroup from "./radio-button-group.svelte";
-  import ArrowForwardSvg from "./icons/arrow-forward-svg.svelte";
+  import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
   
-  onMount(() => restoreFormData())
+  onMount(() => {
+    restoreFormData()
+  })
 
-  let willAttend: boolean | null = null
+  let willAttend = ''
   let phoneNumber = ''
   let email = ''
   let birthday = ''
   let postalCode = ''
   let prefecture = ''
   let address = ''
-  let willUseShuttleBus: boolean | null = null
+  let willUseShuttleBus = ''
 
   $: disabled = willAttend === null || !phoneNumber || !email || !birthday || !postalCode || !prefecture || !address || willUseShuttleBus === null
 
-  function onWillAttendChange(event: CustomEvent<boolean>) {
+  function onWillAttendChange(event: CustomEvent<string>) {
     willAttend = event.detail
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend)
   }
 
   function onPostalCodeChange(event: CustomEvent<PostalCodeInputChangeEvent>) {
@@ -32,37 +36,40 @@
     prefecture = event.detail
   }
 
-  function onWillUseShuttleBus(event: CustomEvent<boolean>) {
+  function onWillUseShuttleBus(event: CustomEvent<string>) {
     willUseShuttleBus = event.detail
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`, willUseShuttleBus)
   }
 
-  function saveFormDataToLocal() {
-    const prefix = 'SunTeruWeddingInvitation.FormData.'
-    localStorage.setItem(`${prefix}phoneNumber`, phoneNumber)
-    localStorage.setItem(`${prefix}email`, email)
-    localStorage.setItem(`${prefix}birthday`, birthday)
-    localStorage.setItem(`${prefix}postalCode`, postalCode)
-    localStorage.setItem(`${prefix}prefecture`, prefecture)
-    localStorage.setItem(`${prefix}address`, address)
+  function saveFormDataToLocal() {    
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}phoneNumber`, phoneNumber)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}email`, email)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}birthday`, birthday)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}postalCode`, postalCode)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}address`, address)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`, willUseShuttleBus)
   }
 
   function restoreFormData() {
-    const prefix = 'SunTeruWeddingInvitation.FormData.'
-    phoneNumber = localStorage.getItem(`${prefix}phoneNumber`) ?? ''
-    email = localStorage.getItem(`${prefix}email`) ?? ''
-    birthday = localStorage.getItem(`${prefix}birthday`) ?? ''
-    postalCode = localStorage.getItem(`${prefix}postalCode`) ?? ''
-    prefecture = localStorage.getItem(`${prefix}prefecture`) ?? ''
-    address = localStorage.getItem(`${prefix}address`) ?? ''
+    willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? ''
+    phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? ''
+    email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? ''
+    birthday = localStorage.getItem(`${STORAGE_KEY_PREFIX}birthday`) ?? ''
+    postalCode = localStorage.getItem(`${STORAGE_KEY_PREFIX}postalCode`) ?? ''
+    prefecture = localStorage.getItem(`${STORAGE_KEY_PREFIX}prefecture`) ?? ''
+    address = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? ''
+    willUseShuttleBus = localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? ''
   }
 </script>
 
-<form>
+<form method="post" action="https://hyperform.jp/api/UULN7qix">
   <fieldset class="required">
     <legend>ご出欠</legend>
     <RadioButtonGroup
       name="ご出欠"
-      options={['ご出席', 'ご欠席'].map(value => ({ label: value, value }))}
+      options={[{ label: 'ご出席', value: 'YES' }, { label: 'ご欠席', value: 'NO' }]}
       on:change={onWillAttendChange}
     />
   </fieldset>
@@ -103,12 +110,18 @@
     <legend>送迎バス</legend>
     <RadioButtonGroup
       name="送迎バス"
-      options={['希望する', '希望しない'].map(value => ({ label: value, value }))}
+      options={[{ label: '希望する', value: 'YES' }, { label: '希望しない', value: 'NO' }]}
       on:change={onWillUseShuttleBus}
     />
+    <div class="mt-4 p-2 bg-bgGray rounded">
+      <p class="text-sm leading-6 text-textGray">
+        各便の人数のバランスを図るため<br>
+        ご回答をお願いしております
+      </p>
+    </div>
   </fieldset>
 
-  <fieldset class="">
+  <fieldset>
     <legend>アレルギーについて</legend>
     <div class="mt-4">
       <small class="text-sm leading-6 text-textGray block mb-2">

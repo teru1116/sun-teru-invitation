@@ -43,6 +43,9 @@
 </script>
 
 <div>
+  <h2>
+    日時・場所
+  </h2>
   <ul>
     {#each descriptions as { svg, title, description, href }}
       <li class="flex items-center mb-4">
