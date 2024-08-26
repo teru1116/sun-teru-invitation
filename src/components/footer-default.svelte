@@ -1,7 +1,12 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { STORAGE_KEY_PREFIX } from "../const";
 
   let text = ''
+
+  onMount(() => {
+    text = localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) ?? ''
+  })
 
   function saveFormDataToLocal() {    
     localStorage.setItem(`${STORAGE_KEY_PREFIX}feedback`, text)
