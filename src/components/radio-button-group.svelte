@@ -10,6 +10,7 @@
 
   export let name: string
   export let options: RadioButtonGroupOption[]
+  export let selectedValue: string
 
   const dispatch = createEventDispatcher()
 
@@ -38,9 +39,9 @@
 {#each options as { label, value }}
   <div class="mt-6">
     <label class="flex items-center cursor-pointer">
-      <input type="radio" name={name} value={value} class="hidden" on:change={handleChange}>
+      <input type="radio" name={name} value={value} class="hidden" checked={selectedValue === value} on:change={handleChange}>
       <div class="custom-checkbox shrink-0 w-6 h-6 bg-white border border-solid border-[#579BB1] rounded-full flex items-center justify-center">
-        <span class="relative m-0"></span>
+        <span class="relative m-0" />
       </div>
       <p class="text-base font-normal pl-4 cursor-pointer">{label}</p>
     </label>

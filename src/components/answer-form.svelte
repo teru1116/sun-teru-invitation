@@ -72,6 +72,7 @@
     <RadioButtonGroup
       name="ご出欠"
       options={[{ label: 'ご出席', value: 'YES' }, { label: 'ご欠席', value: 'NO' }]}
+      selectedValue={willAttend}
       on:change={onWillAttendChange}
     />
   </fieldset>
@@ -113,6 +114,7 @@
     <RadioButtonGroup
       name="送迎バス"
       options={[{ label: '希望する', value: 'YES' }, { label: '希望しない', value: 'NO' }]}
+      selectedValue={willUseShuttleBus}
       on:change={onWillUseShuttleBus}
     />
     <div class="mt-4 p-2 bg-bgGray rounded">
