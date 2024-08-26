@@ -1,7 +1,7 @@
 <script lang="ts">
   // https://svelte.dev/examples/modal
 
-  import CloseSvg from "./icons/close-svg.svelte";
+  import CloseSvg from "./icons/close.svg.svelte";
 
 	export let showModal = false
 

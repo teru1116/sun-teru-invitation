@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte"
-  import ArrowForwardSvg from "./icons/arrow-forward-svg.svelte"
-  import ArrowBackSvg from "./icons/arrow-back-svg.svelte"
-  import CloseSvg from "./icons/close-svg.svelte"
+  import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte"
+  import ArrowBackSvg from "./icons/arrow-back.svg.svelte"
+  import CloseSvg from "./icons/close.svg.svelte"
   
   export let prefecture: string = ''
   let details: HTMLDetailsElement

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ArrowForwardSvg from "./icons/arrow-forward-svg.svelte";
+  import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
   import Modal from "./modal.svelte";
 
   let showModal = false
