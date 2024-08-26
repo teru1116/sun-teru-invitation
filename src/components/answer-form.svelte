@@ -62,9 +62,11 @@
     address = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? ''
     willUseShuttleBus = localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? ''
   }
+
+  const endpoint = import.meta.env.VITE_FORM_ENDPOINT
 </script>
 
-<form method="post" action="https://hyperform.jp/api/UULN7qix">
+<form method="post" action={endpoint}>
   <fieldset class="required">
     <legend>ご出欠</legend>
     <RadioButtonGroup
