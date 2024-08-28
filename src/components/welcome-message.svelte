@@ -2,17 +2,22 @@
   import { onMount } from "svelte";
   import { STORAGE_KEY_PREFIX } from "../const";
 
+  let loading = true
   let familyName: string | null = null
   let givenName: string | null = null  
 
   onMount(() => {
     familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`)
     givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`)
+    loading = false
   })
 </script>
 
 <p class="text-center text-textBlack">
-  {familyName ?? '皆'}{givenName ?? ''}様<br>
+  <span class="h-7">
+    {loading ? '' : `${familyName ?? '皆'}${givenName ?? ''}様`}
+  </span>
+  <br>
   <br>
   いかがお過ごしでしょうか<br>
   このたび 私たちは結婚式を<br>
