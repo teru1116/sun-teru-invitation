@@ -1,5 +1,18 @@
+<script lang="ts">
+  import { onMount } from "svelte";
+  import { STORAGE_KEY_PREFIX } from "../const";
+
+  let familyName: string | null = null
+  let givenName: string | null = null  
+
+  onMount(() => {
+    familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`)
+    givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`)
+  })
+</script>
+
 <p class="text-center text-textBlack">
-  松田様<br>
+  {familyName ?? '皆'}{givenName ?? ''}様<br>
   <br>
   いかがお過ごしでしょうか<br>
   このたび 私たちは結婚式を<br>

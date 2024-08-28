@@ -1,22 +1,38 @@
+<script context="module" lang="ts">
+  export interface Guest {
+    id: string
+    familyName: string
+    givenName: string
+  }
+</script>
+
 <script lang="ts">
   import "../app.css";
   import { onMount } from "svelte"
+  import ky from 'ky'
+  import { STORAGE_KEY_PREFIX } from "../const";
 
-  let g: string | null = null
+  let guestId: string | null = null
 
-  onMount(() => {
+  onMount(async () => {
+    // URLクエリパラメータで指定されたゲストIDを取得
     const url = new URL(location.href)
     const queryParams = new URLSearchParams(url.search)
-    g = queryParams.get('g')
+    guestId = queryParams.get('g') ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`)
+
+    if (guestId) {
+      // ゲストIDから氏名を取得
+      const json = await ky.get<Guest>(`https://sun-teru-wedding.com/api/get-my-dear-guest?id=${guestId}`).json()
+
+      localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, json.id)
+      localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, json.familyName)
+      localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, json.givenName)
+
+      // URLからクエリパラメータを取り除く
+      url.search = ''
+      window.history.replaceState({}, document.title, url.toString())
+    }
   })
-
-  function init() {
-    // URLクエリパラメータに付与されたゲストIDから氏名を取得する
-
-    // URLからクエリパラメータを取り除く
-  }
-
-  init()
 </script>
 
 <slot />
