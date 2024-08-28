@@ -4,10 +4,14 @@
 
   onMount(() => {
     restoreFormData()
+    loading = false
   })
 
-  let guestId: string | null
+  let loading = true
 
+  let guestId = ''
+  let familyName = ''
+  let givenName = ''
   let willAttend = ''
   let phoneNumber = ''
   let email = ''
@@ -18,6 +22,9 @@
   let willUseShuttleBus = ''
 
   function restoreFormData() {
+    guestId = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`) ?? ''
+    familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`) ?? ''
+    givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? ''
     willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? ''
     phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? ''
     email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? ''
@@ -42,7 +49,9 @@
     <img src="/sample-portrait-01.png" class="w-40 h-40" alt="似顔絵">
   </div>
   <h2 class="text-center mt-4">
-    新川靖文様
+    <div class="h-7">
+      {loading ? '' : `${familyName}${givenName}様`}
+    </div>
   </h2>
   <ul>
     {#each items as { name, value, svg }}
