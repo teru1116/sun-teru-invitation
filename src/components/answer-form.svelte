@@ -10,6 +10,9 @@
     restoreFormData()
   })
 
+  let guestId = ''
+  let familyName = ''
+  let givenName = ''
   let willAttend = ''
   let phoneNumber = ''
   let email = ''
@@ -41,7 +44,7 @@
     localStorage.setItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`, willUseShuttleBus)
   }
 
-  function saveFormDataToLocal() {    
+  function saveFormDataToLocal() {
     localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend)
     localStorage.setItem(`${STORAGE_KEY_PREFIX}phoneNumber`, phoneNumber)
     localStorage.setItem(`${STORAGE_KEY_PREFIX}email`, email)
@@ -53,6 +56,9 @@
   }
 
   function restoreFormData() {
+    guestId = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`) ?? ''
+    familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`) ?? ''
+    givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? ''
     willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? ''
     phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? ''
     email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? ''
@@ -67,6 +73,11 @@
 </script>
 
 <form method="post" action={endpoint}>
+  <!-- 表示はしないがサーバーへの送信は行う -->
+  <input type="hidden" name="guestId" value={guestId}>
+  <input type="hidden" name="姓" value={familyName}>
+  <input type="hidden" name="名" value={givenName}>
+
   <fieldset class="required">
     <legend>ご出欠</legend>
     <RadioButtonGroup
@@ -84,7 +95,8 @@
 
   <fieldset class="required">
     <legend>メールアドレス</legend>
-    <input type="email" name="メールアドレス" placeholder="example@gmail.com" autocomplete="email" required bind:value={email} on:blur={saveFormDataToLocal}>
+    <!-- name属性を'email'とすることで自動返信メールの送信先を検出 -->
+    <input type="email" name="email" placeholder="example@gmail.com" autocomplete="email" required bind:value={email} on:blur={saveFormDataToLocal}>
   </fieldset>
 
   <fieldset class="required">
@@ -117,7 +129,7 @@
       selectedValue={willUseShuttleBus}
       on:change={onWillUseShuttleBus}
     />
-    <div class="mt-4 p-2 bg-bgGray rounded">
+    <div class="mt-4">
       <p class="text-sm leading-6 text-textGray">
         各便の人数のバランスを図るため<br>
         ご回答をお願いしております
