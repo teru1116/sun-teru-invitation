@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { guestId, familyName, givenName } from "../stores";
   import { STORAGE_KEY_PREFIX } from "../const";
 
   onMount(() => {
@@ -8,10 +9,6 @@
   })
 
   let loading = true
-
-  let guestId = ''
-  let familyName = ''
-  let givenName = ''
   let willAttend = ''
   let phoneNumber = ''
   let email = ''
@@ -22,9 +19,6 @@
   let willUseShuttleBus = ''
 
   function restoreFormData() {
-    guestId = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`) ?? ''
-    familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`) ?? ''
-    givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? ''
     willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? ''
     phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? ''
     email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? ''
@@ -46,11 +40,13 @@
 
 <div>
   <div class="flex justify-center">
-    <img src="/sample-portrait-01.png" class="w-40 h-40" alt="似顔絵">
+    <img src="https://sun-teru-wedding.com/lovely-smiles/{$guestId}.png" class="w-40 h-40" alt="{$familyName}{$givenName}さんの似顔絵">
   </div>
   <h2 class="text-center mt-4">
     <div class="h-7">
-      {loading ? '' : `${familyName}${givenName}様`}
+      {#if !loading}
+        {$familyName}{$givenName}様
+      {/if}
     </div>
   </h2>
   <ul>
