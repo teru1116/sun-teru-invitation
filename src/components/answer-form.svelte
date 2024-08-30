@@ -33,10 +33,15 @@
     postalCode = event.detail.postalCode
     prefecture = event.detail.prefecture
     address = event.detail.city
+    
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}postalCode`, postalCode)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}address`, address)
   }
 
   function onPrefectureSelect(event: CustomEvent<string>) {
     prefecture = event.detail
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture)
   }
 
   function onWillUseShuttleBus(event: CustomEvent<string>) {
