@@ -1,35 +1,59 @@
 <script lang="ts">
   import "../app.css"
   import { onMount } from "svelte";
-  import { guestId, familyName, givenName, loading, type Guest } from "../stores"
+  import { replaceState } from "$app/navigation";
+  import { guestId, familyName, givenName, loading, guestNotFound, type Guest } from "../stores"
   import { STORAGE_KEY_PREFIX } from "../const"
   import ky from 'ky'
 
   onMount(async () => {
     loading.set(true)
 
+    // URLクエリからゲストIDを取得
+    // URLクエリに付与されていない場合は、ローカルストレージから取得
+    const guestIdResult = getGuestIdFromUrl() ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`)
+    if (!guestIdResult) {
+      guestNotFound.set(true)
+      return console.error(`ゲストが指定されていません`)
+    }
+
+    try {
+      const json = await ky.get<Guest>(`https://sun-teru-wedding.com/api/get-my-dear-guest?id=${guestIdResult}`).json()
+      updateGuestData(json)
+      
+      loading.set(false)
+      
+      hideGuestIdInUrl()
+    } catch (e) {
+      // ゲストの特定に関するエラーはユーザー側で復帰できないため、エラーの種類で処理を分けることはしない
+      // ゲストの特定に失敗した場合、ユーザー自身で氏名を入力してもらう選択肢もあるが、本来招待状は意図した人にだけ送信するものであり、意図しない人がURLを知って入力してしまうと出席者の集計が困難になるため
+      // ゲストの特定失敗は招待状自体利用できないようにし、開発者が対応するものとする
+      guestNotFound.set(true)
+      // Sentryへエラーを送信
+    }
+  })
+
+  function updateGuestData(guest: Guest) {
+    guestId.set(guest.id)
+    familyName.set(guest.familyName)
+    givenName.set(guest.givenName)
+
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, guest.id)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, guest.familyName)
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, guest.givenName)
+  }
+
+  function getGuestIdFromUrl() {
     const url = new URL(location.href)
     const queryParams = new URLSearchParams(url.search)
-    const result = queryParams.get('g') ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`)
-    if (!result) return
+    return queryParams.get('g')
+  }
 
-    guestId.set(result)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, result)
-
-    // URLからクエリパラメータを取り除く
+  function hideGuestIdInUrl() {
+    const url = new URL(location.href)
     url.search = ''
-    window.history.replaceState({}, document.title, url.toString())
-
-    const json = await ky.get<Guest>(`https://sun-teru-wedding.com/api/get-my-dear-guest?id=${result}`).json()
-  
-    familyName.set(json.familyName)
-    givenName.set(json.givenName)
-    
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, json.familyName)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, json.givenName)
-
-    loading.set(false)
-  })
+    replaceState(url.toString(), {})
+  }
 </script>
 
 <slot />

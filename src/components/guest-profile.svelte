@@ -1,14 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { guestId, familyName, givenName } from "../stores";
+  import { guestId, familyName, givenName, loading } from "../stores";
   import { STORAGE_KEY_PREFIX } from "../const";
 
   onMount(() => {
     restoreFormData()
-    loading = false
   })
 
-  let loading = true
   let willAttend = ''
   let phoneNumber = ''
   let email = ''
