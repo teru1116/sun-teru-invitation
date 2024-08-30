@@ -9,9 +9,8 @@
   let completed = false
 
   onMount(() => {
-    if (localStorage.getItem(`${STORAGE_KEY_PREFIX}completedAt`)) {
-      completed = true
-    }
+    // src/components/answer-form.svelte でフォーム送信時にセットしている
+    completed = localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === 'true'
 
     // 隠しコマンド
     if (localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) === 'アドリブで') {

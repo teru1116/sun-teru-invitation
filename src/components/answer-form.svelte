@@ -74,10 +74,14 @@
     willUseShuttleBus = localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? ''
   }
 
+  function onSubmit() {
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}formSubmitted`, 'true')
+  }
+
   const endpoint = import.meta.env.VITE_FORM_ENDPOINT
 </script>
 
-<form method="post" action={endpoint}>
+<form method="post" action={endpoint} on:submit={onSubmit}>
   <!-- 表示はしないがサーバーへの送信は行う -->
   <input type="hidden" name="guestId" value={guestId}>
   <input type="hidden" name="姓" value={familyName}>

@@ -3,11 +3,14 @@
   import { STORAGE_KEY_PREFIX } from "../../const";
   import FooterDefault from "../../components/footer-default.svelte";
   import AfterAnswerContent from "../../components/after-answer-content.svelte";
+  import { replaceState } from "$app/navigation";
 
   onMount(() => {
-    const formRedirected = document.referrer && document.referrer.startsWith(import.meta.env.VITE_FORM_REDIRECT_FROM)
-    if (formRedirected && !localStorage.getItem(`${STORAGE_KEY_PREFIX}completedAt`)) {
-      localStorage.setItem(`${STORAGE_KEY_PREFIX}completedAt`, String(new Date().getTime()))
+    // src/components/answer-form.svelte でフォーム送信時にセットしている
+    const formSubmitted = localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === 'true'
+    // 過去に同じブラウザでフォーム送信が実行されていない場合、完了ページは閲覧させず、トップページに戻す
+    if (!formSubmitted) {
+      return replaceState(location.origin, {})
     }
   })
 </script>
