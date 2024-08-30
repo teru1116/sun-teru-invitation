@@ -9,3 +9,4 @@ export interface Guest {
 export const guestId = writable<string | null>(null)
 export const familyName = writable<string | null>(null)
 export const givenName = writable<string | null>(null)
+export const loading = writable(false)
