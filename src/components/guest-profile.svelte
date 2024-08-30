@@ -38,11 +38,15 @@
 
 <div>
   <div class="flex justify-center">
-    <img src="https://sun-teru-wedding.com/lovely-smiles/{$guestId}.png" class="w-40 h-40" alt="{$familyName}{$givenName}さんの似顔絵">
+    <div class="w-40 h-40">
+      {#if $guestId}
+        <img src="https://sun-teru-wedding.com/lovely-smiles/{$guestId}.png" class="w-full h-full" alt="{$familyName}{$givenName}さんの似顔絵">
+      {/if}
+    </div>
   </div>
   <h2 class="text-center mt-4">
     <div class="h-7">
-      {#if !loading}
+      {#if $familyName && $givenName}
         {$familyName}{$givenName}様
       {/if}
     </div>
