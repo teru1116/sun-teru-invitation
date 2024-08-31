@@ -1,0 +1,314 @@
+<div style="background-color: #ECE8DD; width: 100%; margin: 0; padding: 0;">
+  <table style="width: 100%; max-width: 700px; font-size: 16px; margin: 15px auto; border-radius: 4px; border: 1px solid #DDDDDD; background-color: #FFFFFF; padding: 0; border-spacing: 0; ">
+    <tbody>
+      <!-- ヘッダー -->
+      <tr>
+        <td style="margin: 0; padding: 0;">
+          <div style="border-bottom: 1px solid #DDDDDD; padding: 23px 0;">
+            <div style="max-width: 600px; text-align: center; margin: 0 auto; padding:0 20px;">
+              <div style="line-height: 1.4;">
+                招待状へのご回答ありがとうございました<br>
+                お会いできることを楽しみにしています<br>
+                <br>
+                楠本輝也<br>
+                新川綾菜
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- ゲスト情報 -->
+      <tr>
+        <td style="border-bottom: 1px solid #DDDDDD; margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+            <div style="padding: 30px 0 20px;">
+              <!-- 似顔絵画像 -->
+              <div style="width: 100%;">
+                <!-- 透過画像の似顔絵がダークモードで黒い顔にならないよう背景に真っ白な画像を設置 -->
+                <div style="width: 160px; height: 160px; margin: 0 auto; background-image: url('https://sun-teru-wedding.com/images/white.png'); background-size: cover; border-radius: 9999px; padding: 16px;">
+                  <img src="https://sun-teru-wedding.com/lovely-smiles/{{ guestId }}.png" style="width: 100%; height: 100%;">
+                </div>
+              </div>
+              <!-- 氏名 -->
+              <div style="width: 100%; margin-top: 15px;">
+                <div style="text-align: center; font-size: 20px;">
+                  {{ 姓 }}{{ 名 }}様
+                </div>
+              </div>
+              <!-- フォーム入力内容 -->
+              <div style="width: 100%; margin-top: 30px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <!-- 電話番号 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        電話番号
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        {{ 電話番号 }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- メール -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        メール
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        {{ email }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 誕生日 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        誕生日
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        {{ 誕生日 }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 住所 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        住所
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        {{ 郵便番号 }} {{ 都道府県 }}{{ 住所 }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 送迎バス -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        送迎バス
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        {{ 送迎バス }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- 日時・場所 -->
+      <tr>
+        <td style="border-bottom: 1px solid #DDDDDD; margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+            <div style="padding: 30px 0 20px;">
+              <h2>日時・場所</h2>
+              <div style="width: 100%; margin-top: 30px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <!-- 日付 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        日付
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        2024年11月17日（日）
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 時間 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        時間
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal; line-height: 2;">
+                        受付 午前10:00<br>
+                        挙式 午前10:30<br>
+                        披露宴 午前11:30
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 会場 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        会場
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        THE SEASON'S
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 所在地 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        所在地
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        神奈川県横浜市西区西平沼町6-1
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 会場HP -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        会場HP
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        <a href="https://www.tgn.co.jp/wedding/yokohama/ssy/">
+                          https://www.tgn.co.jp/wedding/yokohama/ssy/
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                  <!-- 電話番号 -->
+                  <tr>
+                    <td width="120">
+                      <div>
+                        電話番号
+                      </div>
+                    </td>
+                    <td>
+                      <div style="word-wrap: break-word; word-break: break-word; white-space: normal;">
+                        <a href="tel:0454104122">045-410-4122</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 5px;">&nbsp;</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- 会場への行き方 -->
+      <tr>
+        <td style="border-bottom: 1px solid #DDDDDD; margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+            <div style="padding: 30px 0 20px;">
+              <h2>会場への行き方</h2>
+              <div style="width: 100%; margin-top: 30px;">
+                <!-- 公共交通機関の場合 -->
+                <div style="margin-bottom: 32px;">
+                  <div style="font-weight: bold; margin-bottom: 8px;">
+                    公共交通機関の場合
+                  </div>
+                  <div>
+                    横浜駅から無料送迎バスがございます<br>
+                    9:00 9:30 10:00の3便<br>
+                  </div>
+                  <div>
+                    横浜駅西口南10番出口
+                  </div>
+                  <div style="margin-top: 8px;">
+                    ※送迎バスをご利用の場合 各便の人数のバランスを図るため お乗りいただきたい便を後日ご連絡いたします
+                  </div>
+                  <div style="margin-top: 16px;">
+                    <img src="https://sun-teru-wedding.com/busstop.png" width="100%" alt="横浜駅西口南10番出口の地図">
+                  </div>
+                </div>
+                <!-- 公共交通機関の場合 -->
+                <div style="margin-bottom: 32px;">
+                  <div style="font-weight: bold; margin-bottom: 8px;">
+                    お車の場合
+                  </div>
+                  <div>
+                    無料の駐車場をご利用いただけます
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- フッター -->
+      <tr style="font-size: 14px;">
+        <td style="margin: 0; padding: 0;">
+          <div style="border-bottom: 1px solid #DDDDDD; padding: 23px 0;">
+            <div style="max-width: 600px; text-align: left; margin: 0 auto; padding:0 20px;">
+              <div>
+                招待状のウェブページでも詳細をご確認いただけます<br>
+                <a href="https://sun-teru-wedding.com/">https://sun-teru-wedding.com/</a>
+                <br>
+                <br>
+                なお 招待状に回答した時と異なるアプリや端末でURLを開くと 再度回答フォームが表示されます<br>
+                例えば LINEでリンクを開いて回答した後に Chromeで招待状のページを開いた場合などです<br>
+                <br>
+                このメールが届いていれば回答は新郎新婦に送信されておりますのでご安心ください
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr style="font-size: 14px;">
+        <td style="margin: 0; padding: 0;">
+          <div style="padding: 23px 0;">
+            <div style="max-width: 600px; text-align: left; margin: 0 auto; padding:0 20px;">
+              <div>
+                このメールは送信専用のメールアドレスから送信されております<br>
+                ご不明な点は楠本輝也もしくは新川綾菜まで直接ご連絡くださいませ
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

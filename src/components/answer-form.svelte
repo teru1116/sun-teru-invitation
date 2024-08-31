@@ -134,7 +134,7 @@
     <legend>送迎バス</legend>
     <RadioButtonGroup
       name="送迎バス"
-      options={[{ label: '希望する', value: 'YES' }, { label: '希望しない', value: 'NO' }]}
+      options={[{ label: '希望する', value: '希望する' }, { label: '希望しない', value: '希望しない' }]}
       selectedValue={willUseShuttleBus}
       on:change={onWillUseShuttleBus}
     />
