@@ -1,38 +1,37 @@
-# create-svelte
+# すんてる結婚式ウェブ招待状
+2024年11月17日（日）に行う結婚式のウェブ招待状のフロントエンドのソースコードです。  
+Svelte、Vite、TypeScript、Tailwind CSSで構築しています。
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+## 前提
+- Node.js 20.16.0
+- yarn 1.22.19
 
-## Creating a project
+## 開発する
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. リポジトリをクローンします
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+git clone git@github.com:teru1116/sun-teru-invitation.git
 ```
 
-## Building
-
-To create a production version of your app:
+2. 依存ファイルをインストールします
 
 ```bash
-npm run build
+yarn
 ```
 
-You can preview the production build with `npm run preview`.
+3. ローカル開発環境を起動します
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+yarn dev
+```
+http://localhost:5173/ で確認できるようになります。
+
+
+### ゲストの皆様に配布する
+下記のように、クエリパラメータに id={ゲストID} を付与したURLをゲストに伝えます。
+```
+https://sun-teru-wedding.com?id=1qazxsw2
+```
+
+クエリパラメータが付与されていない場合や、存在しないゲストIDが指定されている場合、エラー画面が表示されます。
