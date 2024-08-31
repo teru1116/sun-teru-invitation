@@ -56,7 +56,7 @@
 	<button
 		autofocus
 		on:click={() => dialog.close()}
-		class="absolute right-0 -top-7 w-6 h-6 flex items-center justify-center"
+		class="absolute right-0 -top-7 w-6 h-6 flex items-center justify-center focus:outline-none"
 	>
 		<CloseSvg color="#FFF" />
 	</button>
