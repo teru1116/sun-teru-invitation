@@ -6,7 +6,7 @@
   import AnswerForm from "../components/answer-form.svelte";
 </script>
 
-<div class="px-4">
+<div class="px-4 sm:max-w-[800px] sm:mx-auto">
   <section class="mb-10 -mt-10">
     <WelcomeMessage />
   </section>
@@ -17,8 +17,10 @@
     <AccessList />
   </section>
 </div>
-<GoogleMapSection />
-<div class="px-4 mt-10">
+<div class="sm:hidden">
+  <GoogleMapSection />
+</div>
+<div class="px-4 sm:max-w-[800px] sm:mx-auto mt-10">
   <section>
     <h2>
       ご回答

@@ -1,5 +1,6 @@
 <script lang="ts">
   import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
+  import GoogleMapSection from "../components/googlemap.svelte";
   import Modal from "./modal.svelte";
 
   let showModal = false
@@ -50,4 +51,7 @@
       </div>
     </li>
   </ul>
+  <div class="hidden sm:block mt-8">
+    <GoogleMapSection />
+  </div>
 </div>
