@@ -28,7 +28,7 @@ yarn dev
 http://localhost:5173/ で確認できるようになります。
 
 
-### ゲストの皆様に配布する
+## ゲストの皆様に配布する
 下記のように、クエリパラメータに id={ゲストID} を付与したURLをゲストに伝えます。
 ```
 https://sun-teru-wedding.com?id=1qazxsw2
