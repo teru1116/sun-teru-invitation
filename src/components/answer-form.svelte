@@ -170,7 +170,7 @@ const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
         下記のページからご入力ください<br>
         会場に直接送信されます
       </small>
-      <a href="https://www.tg-wn.com/guest/allergy-entry/SSY0000564090-$2y$10$kCMQzEbbtzcVNiwxvOc5deaKlgRqkvz0QRpxud6Uj6U6gMHO1o3i" target="_blank" class="underline text-primary fill-primary tracking-wide flex items-center gap-x-1">
+      <a href="https://www.tg-wn.com/guest/allergy-entry/SSY0000564090-$2y$10$kCMQzEbbtzcVNiwxvOc5deaKlgRqkvz0QRpxud6Uj6U6gMHO1o3i" target="_blank" class="underline text-primary fill-primary tracking-wide inline-flex items-center gap-x-1">
         <span>食事制限の事前登録</span>
         <ArrowForwardSvg size={16} />
       </a>
