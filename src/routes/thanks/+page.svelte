@@ -1,18 +1,19 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { STORAGE_KEY_PREFIX } from "../../const";
-  import FooterDefault from "../../components/footer-default.svelte";
-  import AfterAnswerContent from "../../components/after-answer-content.svelte";
-  import { replaceState } from "$app/navigation";
+import { replaceState } from "$app/navigation";
+import { onMount } from "svelte";
+import AfterAnswerContent from "../../components/after-answer-content.svelte";
+import FooterDefault from "../../components/footer-default.svelte";
+import { STORAGE_KEY_PREFIX } from "../../const";
 
-  onMount(() => {
-    // src/components/answer-form.svelte でフォーム送信時にセットしている
-    const formSubmitted = localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === 'true'
-    // 過去に同じブラウザでフォーム送信が実行されていない場合、完了ページは閲覧させず、トップページに戻す
-    if (!formSubmitted) {
-      return replaceState(location.origin, {})
-    }
-  })
+onMount(() => {
+	// src/components/answer-form.svelte でフォーム送信時にセットしている
+	const formSubmitted =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === "true";
+	// 過去に同じブラウザでフォーム送信が実行されていない場合、完了ページは閲覧させず、トップページに戻す
+	if (!formSubmitted) {
+		return replaceState(location.origin, {});
+	}
+});
 </script>
 
 <div class="bg-bgGray min-h-screen">

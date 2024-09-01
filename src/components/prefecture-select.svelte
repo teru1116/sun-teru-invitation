@@ -1,78 +1,131 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from "svelte"
-  import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte"
-  import ArrowBackSvg from "./icons/arrow-back.svg.svelte"
-  import CloseSvg from "./icons/close.svg.svelte"
-  
-  export let prefecture: string = ''
-  let details: HTMLDetailsElement
+import { createEventDispatcher, onMount } from "svelte";
+import ArrowBackSvg from "./icons/arrow-back.svg.svelte";
+import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
+import CloseSvg from "./icons/close.svg.svelte";
 
-  const dispatch = createEventDispatcher<{
-    change: string
-  }>()
+export let prefecture = "";
+let details: HTMLDetailsElement;
 
-  const options: [string, string[]][] = [
-    ['北海道・東北地方', ['北海道', '青森県', '岩手県', '秋田県', '宮城県', '山形県', '福島県']],
-    ['関東地方', ['茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '神奈川県', '東京都']],
-    ['中部・近畿地方', ['新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県']],
-    ['四国・中国地方', ['鳥取県', '島根県', '岡山県', '広島県', '山口県', '徳島県', '香川県', '愛媛県', '高知県']],
-    ['九州・沖縄地方', ['福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県']]
-  ]
+const dispatch = createEventDispatcher<{
+	change: string;
+}>();
 
-  let selectedArea: string | undefined = undefined
-  $: prefectureOptions = selectedArea ? options.find(([area]) => area === selectedArea) ?? [] : []
+const options: [string, string[]][] = [
+	[
+		"北海道・東北地方",
+		["北海道", "青森県", "岩手県", "秋田県", "宮城県", "山形県", "福島県"],
+	],
+	[
+		"関東地方",
+		["茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "神奈川県", "東京都"],
+	],
+	[
+		"中部・近畿地方",
+		[
+			"新潟県",
+			"富山県",
+			"石川県",
+			"福井県",
+			"山梨県",
+			"長野県",
+			"岐阜県",
+			"静岡県",
+			"愛知県",
+			"三重県",
+			"滋賀県",
+			"京都府",
+			"大阪府",
+			"兵庫県",
+			"奈良県",
+			"和歌山県",
+		],
+	],
+	[
+		"四国・中国地方",
+		[
+			"鳥取県",
+			"島根県",
+			"岡山県",
+			"広島県",
+			"山口県",
+			"徳島県",
+			"香川県",
+			"愛媛県",
+			"高知県",
+		],
+	],
+	[
+		"九州・沖縄地方",
+		[
+			"福岡県",
+			"佐賀県",
+			"長崎県",
+			"熊本県",
+			"大分県",
+			"宮崎県",
+			"鹿児島県",
+			"沖縄県",
+		],
+	],
+];
 
-  function closeDetails() {
-    selectedArea = undefined
-    details.open = false
-  }
+let selectedArea: string | undefined = undefined;
+$: prefectureOptions = selectedArea
+	? options.find(([area]) => area === selectedArea) ?? []
+	: [];
 
-  function selectArea(area: string) {
-    selectedArea = area
-  }
+function closeDetails() {
+	selectedArea = undefined;
+	details.open = false;
+}
 
-  function clearSelectedArea() {
-    selectedArea = undefined
-  }
+function selectArea(area: string) {
+	selectedArea = area;
+}
 
-  function onPrefectureSelect(prefecture: string) {
-    dispatch('change', prefecture)
-    closeDetails()
-  }
+function clearSelectedArea() {
+	selectedArea = undefined;
+}
 
-  let isOpen = false
+function onPrefectureSelect(prefecture: string) {
+	dispatch("change", prefecture);
+	closeDetails();
+}
 
-  function toggleModalBackgroundScrollable(event: Event) {
-    isOpen = (event.target as HTMLDetailsElement).open
+let isOpen = false;
 
-    // モーダルが開いている時は、背後のスクロールを無効にする
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-  }
+function toggleModalBackgroundScrollable(event: Event) {
+	isOpen = (event.target as HTMLDetailsElement).open;
 
-  onMount(() => {
-    setupDetailsToggleListener()
-    window.addEventListener('resize', setupDetailsToggleListener)
-  })
+	// モーダルが開いている時は、背後のスクロールを無効にする
+	if (isOpen) {
+		document.body.style.overflow = "hidden";
+	} else {
+		document.body.style.overflow = "";
+	}
+}
 
-  function setupDetailsToggleListener() {
-    if (window.innerWidth <= 640) {
-      details.addEventListener('toggle', toggleModalBackgroundScrollable)
-    } else {
-      details.removeEventListener('toggle', toggleModalBackgroundScrollable)
-    }
-  }
+onMount(() => {
+	setupDetailsToggleListener();
+	window.addEventListener("resize", setupDetailsToggleListener);
+});
 
-  function onSummeryClick(event: MouseEvent) {
-    selectedArea = undefined
+function setupDetailsToggleListener() {
+	if (window.innerWidth <= 640) {
+		details.addEventListener("toggle", toggleModalBackgroundScrollable);
+	} else {
+		details.removeEventListener("toggle", toggleModalBackgroundScrollable);
+	}
+}
 
-    // <summery>タグのクリックイベントをdocumentにまで伝播させない
-    // `document.addEventListener('click', closeDetails)`によって、<summery>タグをクリックしても<details>が閉じなくなってしまう現象への対策
-    event.stopPropagation()
-  }
+function onSummeryClick(event: MouseEvent) {
+	selectedArea = undefined;
+
+	// <summery>タグのクリックイベントをdocumentにまで伝播させない
+	// `document.addEventListener('click', closeDetails)`によって、<summery>タグをクリックしても<details>が閉じなくなってしまう現象への対策
+	event.stopPropagation();
+}
 </script>
 
 <style>

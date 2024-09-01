@@ -1,84 +1,101 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { STORAGE_KEY_PREFIX } from "../const";
-  import PostalCodeInput, { type PostalCodeInputChangeEvent } from "./postal-code-input.svelte";
-  import PrefectureSelect from "./prefecture-select.svelte";
-  import RadioButtonGroup from "./radio-button-group.svelte";
-  import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
-  
-  onMount(() => {
-    restoreFormData()
-  })
+import { onMount } from "svelte";
+import { STORAGE_KEY_PREFIX } from "../const";
+import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
+import PostalCodeInput, {
+	type PostalCodeInputChangeEvent,
+} from "./postal-code-input.svelte";
+import PrefectureSelect from "./prefecture-select.svelte";
+import RadioButtonGroup from "./radio-button-group.svelte";
 
-  let guestId = ''
-  let familyName = ''
-  let givenName = ''
-  let willAttend = ''
-  let phoneNumber = ''
-  let email = ''
-  let birthday = ''
-  let postalCode = ''
-  let prefecture = ''
-  let address = ''
-  let willUseShuttleBus = ''
+onMount(() => {
+	restoreFormData();
+});
 
-  $: disabled = willAttend === null || !phoneNumber || !email || !birthday || !postalCode || !prefecture || !address || willUseShuttleBus === null
+let guestId = "";
+let familyName = "";
+let givenName = "";
+let willAttend = "";
+let phoneNumber = "";
+let email = "";
+let birthday = "";
+let postalCode = "";
+let prefecture = "";
+let address = "";
+let willUseShuttleBus = "";
 
-  function onWillAttendChange(event: CustomEvent<string>) {
-    willAttend = event.detail
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend)
-  }
+$: disabled =
+	willAttend === null ||
+	!phoneNumber ||
+	!email ||
+	!birthday ||
+	!postalCode ||
+	!prefecture ||
+	!address ||
+	willUseShuttleBus === null;
 
-  function onPostalCodeChange(event: CustomEvent<PostalCodeInputChangeEvent>) {
-    postalCode = event.detail.postalCode
-    prefecture = event.detail.prefecture
-    address = event.detail.city
-    
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}postalCode`, postalCode)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}address`, address)
-  }
+function onWillAttendChange(event: CustomEvent<string>) {
+	willAttend = event.detail;
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend);
+}
 
-  function onPrefectureSelect(event: CustomEvent<string>) {
-    prefecture = event.detail
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture)
-  }
+function onPostalCodeChange(event: CustomEvent<PostalCodeInputChangeEvent>) {
+	postalCode = event.detail.postalCode;
+	prefecture = event.detail.prefecture;
+	address = event.detail.city;
 
-  function onWillUseShuttleBus(event: CustomEvent<string>) {
-    willUseShuttleBus = event.detail
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`, willUseShuttleBus)
-  }
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}postalCode`, postalCode);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}address`, address);
+}
 
-  function saveFormDataToLocal() {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}phoneNumber`, phoneNumber)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}email`, email)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}birthday`, birthday)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}postalCode`, postalCode)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}address`, address)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`, willUseShuttleBus)
-  }
+function onPrefectureSelect(event: CustomEvent<string>) {
+	prefecture = event.detail;
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture);
+}
 
-  function restoreFormData() {
-    guestId = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`) ?? ''
-    familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`) ?? ''
-    givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? ''
-    willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? ''
-    phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? ''
-    email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? ''
-    birthday = localStorage.getItem(`${STORAGE_KEY_PREFIX}birthday`) ?? ''
-    postalCode = localStorage.getItem(`${STORAGE_KEY_PREFIX}postalCode`) ?? ''
-    prefecture = localStorage.getItem(`${STORAGE_KEY_PREFIX}prefecture`) ?? ''
-    address = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? ''
-    willUseShuttleBus = localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? ''
-  }
+function onWillUseShuttleBus(event: CustomEvent<string>) {
+	willUseShuttleBus = event.detail;
+	localStorage.setItem(
+		`${STORAGE_KEY_PREFIX}willUseShuttleBus`,
+		willUseShuttleBus,
+	);
+}
 
-  function onSubmit() {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}formSubmitted`, 'true')
-  }
+function saveFormDataToLocal() {
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}willAttend`, willAttend);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}phoneNumber`, phoneNumber);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}email`, email);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}birthday`, birthday);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}postalCode`, postalCode);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}prefecture`, prefecture);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}address`, address);
+	localStorage.setItem(
+		`${STORAGE_KEY_PREFIX}willUseShuttleBus`,
+		willUseShuttleBus,
+	);
+}
 
-  const endpoint = import.meta.env.VITE_FORM_ENDPOINT
+function restoreFormData() {
+	guestId = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`) ?? "";
+	familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`) ?? "";
+	givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? "";
+	willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? "";
+	phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? "";
+	email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? "";
+	birthday = localStorage.getItem(`${STORAGE_KEY_PREFIX}birthday`) ?? "";
+	postalCode = localStorage.getItem(`${STORAGE_KEY_PREFIX}postalCode`) ?? "";
+	prefecture = localStorage.getItem(`${STORAGE_KEY_PREFIX}prefecture`) ?? "";
+	address = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? "";
+	willUseShuttleBus =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? "";
+}
+
+function onSubmit() {
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}formSubmitted`, "true");
+}
+
+const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
 </script>
 
 <form method="post" action={endpoint} on:submit={onSubmit}>

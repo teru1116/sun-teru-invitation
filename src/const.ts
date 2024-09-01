@@ -1,1 +1,1 @@
-export const STORAGE_KEY_PREFIX = 'SunTeruWeddingInvitation.FormData.'
+export const STORAGE_KEY_PREFIX = "SunTeruWeddingInvitation.FormData.";

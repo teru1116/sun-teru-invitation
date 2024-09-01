@@ -1,13 +1,13 @@
 <script lang="ts">
-  // https://svelte.dev/examples/modal
+// https://svelte.dev/examples/modal
 
-  import CloseSvg from "./icons/close.svg.svelte";
+import CloseSvg from "./icons/close.svg.svelte";
 
-	export let showModal = false
+export let showModal = false;
 
-	let dialog: HTMLDialogElement
+let dialog: HTMLDialogElement;
 
-	$: if (dialog && showModal) dialog.showModal()
+$: if (dialog && showModal) dialog.showModal();
 </script>
 
 <style>

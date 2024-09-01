@@ -1,22 +1,23 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { STORAGE_KEY_PREFIX } from "../const";
-  import FirstView from "../components/first-view.svelte";
-  import FooterDefault from "../components/footer-default.svelte";
-  import BeforeAnswerContent from "../components/before-answer-content.svelte";
-  import AfterAnswerContent from "../components/after-answer-content.svelte";
+import { onMount } from "svelte";
+import AfterAnswerContent from "../components/after-answer-content.svelte";
+import BeforeAnswerContent from "../components/before-answer-content.svelte";
+import FirstView from "../components/first-view.svelte";
+import FooterDefault from "../components/footer-default.svelte";
+import { STORAGE_KEY_PREFIX } from "../const";
 
-  let completed = false
+let completed = false;
 
-  onMount(() => {
-    // src/components/answer-form.svelte でフォーム送信時にセットしている
-    completed = localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === 'true'
+onMount(() => {
+	// src/components/answer-form.svelte でフォーム送信時にセットしている
+	completed =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === "true";
 
-    // 隠しコマンド
-    if (localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) === 'アドリブで') {
-      completed = false
-    }
-  })
+	// 隠しコマンド
+	if (localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) === "アドリブで") {
+		completed = false;
+	}
+});
 </script>
 
 <div class="bg-bgGray">

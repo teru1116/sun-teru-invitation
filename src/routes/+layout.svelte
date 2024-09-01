@@ -1,59 +1,71 @@
 <script lang="ts">
-  import "../app.css"
-  import { onMount } from "svelte";
-  import { replaceState } from "$app/navigation";
-  import { guestId, familyName, givenName, loading, guestNotFound, type Guest } from "../stores"
-  import { STORAGE_KEY_PREFIX } from "../const"
-  import ky from 'ky'
+import "../app.css";
+import { replaceState } from "$app/navigation";
+import ky from "ky";
+import { onMount } from "svelte";
+import { STORAGE_KEY_PREFIX } from "../const";
+import {
+	type Guest,
+	familyName,
+	givenName,
+	guestId,
+	guestNotFound,
+	loading,
+} from "../stores";
 
-  onMount(async () => {
-    loading.set(true)
+onMount(async () => {
+	loading.set(true);
 
-    // URLクエリからゲストIDを取得
-    // URLクエリに付与されていない場合は、ローカルストレージから取得
-    const guestIdResult = getGuestIdFromUrl() ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`)
-    if (!guestIdResult) {
-      guestNotFound.set(true)
-      return console.error(`ゲストが指定されていません`)
-    }
+	// URLクエリからゲストIDを取得
+	// URLクエリに付与されていない場合は、ローカルストレージから取得
+	const guestIdResult =
+		getGuestIdFromUrl() ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`);
+	if (!guestIdResult) {
+		guestNotFound.set(true);
+		return console.error("ゲストが指定されていません");
+	}
 
-    try {
-      const json = await ky.get<Guest>(`https://sun-teru-wedding.com/api/get-my-dear-guest?id=${guestIdResult}`).json()
-      updateGuestData(json)
-      
-      loading.set(false)
-      
-      hideGuestIdInUrl()
-    } catch (e) {
-      // ゲストの特定に関するエラーはユーザー側で復帰できないため、エラーの種類で処理を分けることはしない
-      // ゲストの特定に失敗した場合、ユーザー自身で氏名を入力してもらう選択肢もあるが、本来招待状は意図した人にだけ送信するものであり、意図しない人がURLを知って入力してしまうと出席者の集計が困難になるため
-      // ゲストの特定失敗は招待状自体利用できないようにし、開発者が対応するものとする
-      guestNotFound.set(true)
-      // Sentryへエラーを送信
-    }
-  })
+	try {
+		const json = await ky
+			.get<Guest>(
+				`https://sun-teru-wedding.com/api/get-my-dear-guest?id=${guestIdResult}`,
+			)
+			.json();
+		updateGuestData(json);
 
-  function updateGuestData(guest: Guest) {
-    guestId.set(guest.id)
-    familyName.set(guest.familyName)
-    givenName.set(guest.givenName)
+		loading.set(false);
 
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, guest.id)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, guest.familyName)
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, guest.givenName)
-  }
+		hideGuestIdInUrl();
+	} catch (e) {
+		// ゲストの特定に関するエラーはユーザー側で復帰できないため、エラーの種類で処理を分けることはしない
+		// ゲストの特定に失敗した場合、ユーザー自身で氏名を入力してもらう選択肢もあるが、本来招待状は意図した人にだけ送信するものであり、意図しない人がURLを知って入力してしまうと出席者の集計が困難になるため
+		// ゲストの特定失敗は招待状自体利用できないようにし、開発者が対応するものとする
+		guestNotFound.set(true);
+		// Sentryへエラーを送信
+	}
+});
 
-  function getGuestIdFromUrl() {
-    const url = new URL(location.href)
-    const queryParams = new URLSearchParams(url.search)
-    return queryParams.get('g')
-  }
+function updateGuestData(guest: Guest) {
+	guestId.set(guest.id);
+	familyName.set(guest.familyName);
+	givenName.set(guest.givenName);
 
-  function hideGuestIdInUrl() {
-    const url = new URL(location.href)
-    url.search = ''
-    replaceState(url.toString(), {})
-  }
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, guest.id);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, guest.familyName);
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, guest.givenName);
+}
+
+function getGuestIdFromUrl() {
+	const url = new URL(location.href);
+	const queryParams = new URLSearchParams(url.search);
+	return queryParams.get("g");
+}
+
+function hideGuestIdInUrl() {
+	const url = new URL(location.href);
+	url.search = "";
+	replaceState(url.toString(), {});
+}
 </script>
 
 <slot />

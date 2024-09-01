@@ -1,9 +1,9 @@
 <script lang="ts">
-  import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
-  import GoogleMapSection from "../components/googlemap.svelte";
-  import Modal from "./modal.svelte";
+import GoogleMapSection from "../components/googlemap.svelte";
+import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
+import Modal from "./modal.svelte";
 
-  let showModal = false
+let showModal = false;
 </script>
 
 <div>

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import WelcomeMessage from "../components/welcome-message.svelte";
-  import InformationList from "../components/information-list.svelte";
-  import GoogleMapSection from "../components/googlemap.svelte";
-  import AccessList from "../components/access-list.svelte";
-  import AnswerForm from "../components/answer-form.svelte";
+import AccessList from "../components/access-list.svelte";
+import AnswerForm from "../components/answer-form.svelte";
+import GoogleMapSection from "../components/googlemap.svelte";
+import InformationList from "../components/information-list.svelte";
+import WelcomeMessage from "../components/welcome-message.svelte";
 </script>
 
 <div class="px-4 sm:max-w-[800px] sm:mx-auto">

@@ -1,26 +1,29 @@
 <script lang="ts">
-  function onCloseButtonClick(event: MouseEvent) {
-    const button = event.target as HTMLButtonElement
-    const details = button.closest('details')
-    if (details) {
-      details.removeAttribute('open')
-    }
-  }
+function onCloseButtonClick(event: MouseEvent) {
+	const button = event.target as HTMLButtonElement;
+	const details = button.closest("details");
+	if (details) {
+		details.removeAttribute("open");
+	}
+}
 
-  const items = [
-    {
-      title: `すでに回答したのにフォームが表示されてしまう`,
-      content: `回答した時と違うアプリやデバイスでこのページを開くと 回答済みであってもフォームが表示されてしまいます\n回答した時にメールが届いていれば ご出欠は問題なく送信されておりますのでご安心ください`
-    },
-    {
-      title: `自分ではない他の誰かの名前が表示されている`,
-      content: `大変申し訳ございません\nお送りすべきURLをこちらが間違えてしまったようです\n恐れ入りますが個別にご連絡いただけますと助かります`
-    },
-    {
-      title: `「招待状に回答する」をクリックしても 画面が切り替わらない`,
-      content: `全ての項目を入力あるいは選択したことをご確認ください\nまたインターネットに接続されていることのご確認もお願い致します（モバイルデータ通信がOFFでないこと Wi-Fiに接続されていること 速度制限がかかっていないこと Wi-Fiが低速でないこと等）`
-    },
-  ]
+const items = [
+	{
+		title: "すでに回答したのにフォームが表示されてしまう",
+		content:
+			"回答した時と違うアプリやデバイスでこのページを開くと 回答済みであってもフォームが表示されてしまいます\n回答した時にメールが届いていれば ご出欠は問題なく送信されておりますのでご安心ください",
+	},
+	{
+		title: "自分ではない他の誰かの名前が表示されている",
+		content:
+			"大変申し訳ございません\nお送りすべきURLをこちらが間違えてしまったようです\n恐れ入りますが個別にご連絡いただけますと助かります",
+	},
+	{
+		title: "「招待状に回答する」をクリックしても 画面が切り替わらない",
+		content:
+			"全ての項目を入力あるいは選択したことをご確認ください\nまたインターネットに接続されていることのご確認もお願い致します（モバイルデータ通信がOFFでないこと Wi-Fiに接続されていること 速度制限がかかっていないこと Wi-Fiが低速でないこと等）",
+	},
+];
 </script>
 
 <div>

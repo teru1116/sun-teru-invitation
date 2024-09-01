@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { STORAGE_KEY_PREFIX } from "../const";
+import { onMount } from "svelte";
+import { STORAGE_KEY_PREFIX } from "../const";
 
-  let text = ''
+let text = "";
 
-  onMount(() => {
-    text = localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) ?? ''
-  })
+onMount(() => {
+	text = localStorage.getItem(`${STORAGE_KEY_PREFIX}feedback`) ?? "";
+});
 
-  function saveFormDataToLocal() {    
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}feedback`, text)
-  }
+function saveFormDataToLocal() {
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}feedback`, text);
+}
 </script>
 
 <footer class="bg-light px-4 pt-8 pb-12">

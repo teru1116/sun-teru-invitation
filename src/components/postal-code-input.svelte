@@ -1,9 +1,9 @@
 <script context="module" lang="ts">
-  export type PostalCodeInputChangeEvent = {
-    postalCode: string
-    prefecture: string
-    city: string
-  }
+export type PostalCodeInputChangeEvent = {
+	postalCode: string;
+	prefecture: string;
+	city: string;
+};
 </script>
 
 <script lang="ts">

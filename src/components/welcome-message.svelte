@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { familyName, givenName, loading } from "../stores"
+import { familyName, givenName, loading } from "../stores";
 </script>
 
 <p class="text-center text-textBlack">

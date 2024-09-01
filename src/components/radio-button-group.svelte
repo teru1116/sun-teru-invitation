@@ -1,8 +1,8 @@
 <script context="module" lang="ts">
-  export type RadioButtonGroupOption = {
-    label: string
-    value: string
-  }
+export type RadioButtonGroupOption = {
+	label: string;
+	value: string;
+};
 </script>
 
 <script lang="ts">
