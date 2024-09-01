@@ -25,8 +25,8 @@
 
     const response = await fetch(`https://apis.postcode-jp.com/api/v5/postcodes/${withoutHyphen}`, {
       headers: {
-        apiKey: 'SkY0TGK1aEDZN7ppcthkzF7jmAkl5GHPimhKgfq',
-      },
+        apiKey: import.meta.env.VITE_POSTCODE_API_KEY
+      }
     })
 
     if (!response.ok) {

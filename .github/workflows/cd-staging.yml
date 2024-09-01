@@ -19,6 +19,7 @@ jobs:
       - run: yarn build
         env:
           VITE_FORM_ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT }}
+          VITE_POSTCODE_API_KEY: ${{ secrets.VITE_POSTCODE_API_KEY }}
 
       - name: deploy to S3
         env:
