@@ -179,12 +179,12 @@ const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
 
   <div class="relative">
     {#if disabled}
-      <p class="absolute text-errorRed text-sm">必須項目をすべて入力してください</p>
+      <p class="absolute text-errorRed text-sm sm:-mt-8">必須項目をすべて入力してください</p>
     {/if}
     <button
       type="submit"
       disabled={disabled}
-      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-8 bg-primary disabled:bg-[#6e7881] hover:opacity-80 text-white py-4 px-6 rounded font-bold tracking-wide"
+      class="w-full sm:w-[412px] sm:mx-auto sm:block mt-14 bg-primary disabled:bg-[#6e7881] hover:opacity-80 text-white py-4 px-6 rounded font-bold tracking-wide"
     >
       招待状に回答する
     </button>
