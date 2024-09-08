@@ -1,6 +1,6 @@
 <script lang="ts">
 import ky from "ky";
-import { onMount } from "svelte";
+import { onDestroy, onMount } from "svelte";
 import { STORAGE_KEY_PREFIX } from "../const";
 import { guestId } from "../stores";
 
@@ -19,6 +19,10 @@ let hasSent = false;
 
 const unsubscribe = guestId.subscribe((value) => {
 	id = value;
+});
+
+onDestroy(() => {
+	unsubscribe();
 });
 
 async function submit() {
