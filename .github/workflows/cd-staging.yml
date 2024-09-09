@@ -18,7 +18,7 @@ jobs:
 
       - run: yarn build
         env:
-          VITE_FORM_ENDPOINT: ${{ secrets.VITE_FORM_ENDPOINT }}
+          VITE_FORM_ENDPOINT: https://hyperform.jp/api/CrT2XR4Z
           VITE_POSTCODE_API_KEY: ${{ secrets.VITE_POSTCODE_API_KEY }}
 
       - name: deploy to S3
