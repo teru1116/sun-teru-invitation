@@ -26,12 +26,12 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --recursive --region ap-northeast-1 --metadata-directive REPLACE --cache-control 'public, max-age=3600, must-revalidate' dist s3://sun-teru-invitation
+          aws s3 cp --recursive --region ap-northeast-1 --metadata-directive REPLACE --cache-control 'public, max-age=3600, must-revalidate' dist s3://sun-teru-wedding.com
 
       - name: invalidate CloudFront cache
         uses: chetan/invalidate-cloudfront-action@v2
         env:
-          DISTRIBUTION: E3RG6PWYQ3NMUB
+          DISTRIBUTION: E3DLO7I7LKD8MN
           PATHS: "/*"
           AWS_REGION: "ap-northeast-1"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
