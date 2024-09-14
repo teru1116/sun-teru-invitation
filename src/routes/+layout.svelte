@@ -17,9 +17,7 @@ onMount(async () => {
 	loading.set(true);
 
 	// URLクエリからゲストIDを取得
-	// URLクエリに付与されていない場合は、ローカルストレージから取得
-	const guestIdResult =
-		getGuestIdFromUrl() ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`);
+	const guestIdResult = getGuestIdFromUrl();
 	if (!guestIdResult) {
 		guestNotFound.set(true);
 		return console.error("ゲストが指定されていません");
@@ -34,8 +32,6 @@ onMount(async () => {
 		updateGuestData(json);
 
 		loading.set(false);
-
-		hideGuestIdInUrl();
 	} catch (e) {
 		// ゲストの特定に関するエラーはユーザー側で復帰できないため、エラーの種類で処理を分けることはしない
 		// ゲストの特定に失敗した場合、ユーザー自身で氏名を入力してもらう選択肢もあるが、本来招待状は意図した人にだけ送信するものであり、意図しない人がURLを知って入力してしまうと出席者の集計が困難になるため
@@ -59,12 +55,6 @@ function getGuestIdFromUrl() {
 	const url = new URL(location.href);
 	const queryParams = new URLSearchParams(url.search);
 	return queryParams.get("g");
-}
-
-function hideGuestIdInUrl() {
-	const url = new URL(location.href);
-	url.search = "";
-	replaceState(url.toString(), {});
 }
 </script>
 
