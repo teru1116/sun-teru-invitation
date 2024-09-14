@@ -91,6 +91,17 @@ function onSubmit() {
 }
 
 const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
+
+function fillTestData() {
+	willAttend = "YES";
+	phoneNumber = "09012345678";
+	email = "ayana.shinkawa1206@gmail.com";
+	birthday = "12/6";
+	postalCode = "2130033";
+	prefecture = "神奈川県";
+	address = "川崎市高津区下作延4-12-3-101";
+	willUseShuttleBus = "希望する";
+}
 </script>
 
 <form method="post" action={endpoint} on:submit={onSubmit}>
@@ -163,7 +174,7 @@ const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
     <div class="mt-4">
       <small class="text-sm leading-6 text-textGray block mb-2">
         下記のページからご入力ください<br>
-        会場に直接送信されます
+        会場に直接送信されま<button on:click={fillTestData}>す</button>
       </small>
       <a href="https://www.tg-wn.com/guest/allergy-entry/SSY0000564090-$2y$10$kCMQzEbbtzcVNiwxvOc5deaKlgRqkvz0QRpxud6Uj6U6gMHO1o3i" target="_blank" class="underline text-primary fill-primary tracking-wide inline-flex items-center gap-x-1">
         <p>食事制限の事前登録</p>
