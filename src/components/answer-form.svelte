@@ -1,6 +1,7 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { STORAGE_KEY_PREFIX } from "../const";
+import { familyName, givenName, guestId } from "../stores";
 import ArrowForwardSvg from "./icons/arrow-forward.svg.svelte";
 import PostalCodeInput, {
 	type PostalCodeInputChangeEvent,
@@ -12,9 +13,6 @@ onMount(() => {
 	restoreFormData();
 });
 
-let guestId = "";
-let familyName = "";
-let givenName = "";
 let willAttend = "";
 let phoneNumber = "";
 let email = "";
@@ -77,9 +75,6 @@ function saveFormDataToLocal() {
 }
 
 function restoreFormData() {
-	guestId = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`) ?? "";
-	familyName = localStorage.getItem(`${STORAGE_KEY_PREFIX}familyName`) ?? "";
-	givenName = localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? "";
 	willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? "";
 	phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? "";
 	email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? "";
@@ -100,9 +95,9 @@ const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
 
 <form method="post" action={endpoint} on:submit={onSubmit}>
   <!-- 表示はしないがサーバーへの送信は行う -->
-  <input type="hidden" name="guestId" value={guestId}>
-  <input type="hidden" name="姓" value={familyName}>
-  <input type="hidden" name="名" value={givenName}>
+  <input type="hidden" name="guestId" value={$guestId}>
+  <input type="hidden" name="姓" value={$familyName}>
+  <input type="hidden" name="名" value={$givenName}>
 
   <fieldset class="required">
     <legend>ご出欠</legend>
