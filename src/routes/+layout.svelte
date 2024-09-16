@@ -5,6 +5,7 @@ import { onMount } from "svelte";
 import { STORAGE_KEY_PREFIX } from "../const";
 import {
 	type Guest,
+	completed,
 	familyName,
 	givenName,
 	guestId,
@@ -45,6 +46,7 @@ function updateGuestData(guest: Guest) {
 	guestId.set(guest.id);
 	familyName.set(guest.familyName);
 	givenName.set(guest.givenName);
+	completed.set(guest.completed);
 
 	// フォーム送信後にリダイレクトされる完了ページでゲスト情報を表示できるよう、ゲストIDをブラウザに保存
 	// 再度アクセスした場合はまたURLクエリをゲストIDの情報源とするため、ゲストIDは永続化しないようSessionStorageを使う
