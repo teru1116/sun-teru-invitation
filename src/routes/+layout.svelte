@@ -46,10 +46,9 @@ function updateGuestData(guest: Guest) {
 	familyName.set(guest.familyName);
 	givenName.set(guest.givenName);
 
-	// フォーム送信後にリダイレクトされる完了ページでゲスト情報を表示できるよう、ゲスト情報をブラウザに保存
-	localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, guest.id);
-	localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, guest.familyName);
-	localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, guest.givenName);
+	// フォーム送信後にリダイレクトされる完了ページでゲスト情報を表示できるよう、ゲストIDをブラウザに保存
+	// 再度アクセスした場合はまたURLクエリをゲストIDの情報源とするため、ゲストIDは永続化しないようSessionStorageを使う
+	sessionStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, guest.id);
 }
 
 /** URLクエリからゲストIDを取得 */

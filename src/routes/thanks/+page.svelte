@@ -17,7 +17,8 @@ let address = "";
 let willUseShuttleBus = "";
 
 onMount(async () => {
-	const guestIdResult = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`);
+	// src/routes/+layout.svelte で保存していたURLクエリのゲストIDを取得
+	const guestIdResult = sessionStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`);
 	guestId.set(guestIdResult);
 
 	restoreFormData();
