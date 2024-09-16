@@ -1,19 +1,75 @@
 <script lang="ts">
-import { replaceState } from "$app/navigation";
-import { onMount } from "svelte";
+import ky from "ky";
+import { onDestroy, onMount } from "svelte";
 import AfterAnswerContent from "../../components/after-answer-content.svelte";
 import FooterDefault from "../../components/footer-default.svelte";
 import { STORAGE_KEY_PREFIX } from "../../const";
+import { type Guest, familyName, givenName, guestId } from "../../stores";
 
-onMount(() => {
-	// src/components/answer-form.svelte でフォーム送信時にセットしている
-	const formSubmitted =
-		localStorage.getItem(`${STORAGE_KEY_PREFIX}formSubmitted`) === "true";
-	// 過去に同じブラウザでフォーム送信が実行されていない場合、完了ページは閲覧させず、トップページに戻す
-	if (!formSubmitted) {
-		return replaceState(location.origin, {});
-	}
+let id: string | null = null;
+let willAttend = "";
+let phoneNumber = "";
+let email = "";
+let birthday = "";
+let postalCode = "";
+let prefecture = "";
+let address = "";
+let willUseShuttleBus = "";
+
+onMount(async () => {
+	const guestIdResult = localStorage.getItem(`${STORAGE_KEY_PREFIX}guestId`);
+	guestId.set(guestIdResult);
+
+	restoreFormData();
+
+	const [guest] = await Promise.all([
+		// ゲスト情報表示コンポーネントで使用する氏名を取得
+		ky
+			.get<Guest>(
+				`https://sun-teru-wedding.com/api/get-my-dear-guest?id=${guestIdResult}`,
+			)
+			.json(),
+		// 回答情報をDynamoDBに保存
+		ky
+			.post("https://sun-teru-wedding.com/api/answer", {
+				json: {
+					guestId: id,
+					willAttend,
+					phoneNumber,
+					email,
+					birthday,
+					postalCode,
+					prefecture,
+					address,
+					willUseShuttleBus,
+				},
+			})
+			.json(),
+	]);
+
+	familyName.set(guest.familyName);
+	givenName.set(guest.givenName);
 });
+
+const unsubscribe = guestId.subscribe((value) => {
+	id = value;
+});
+
+onDestroy(() => {
+	unsubscribe();
+});
+
+function restoreFormData() {
+	willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? "";
+	phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? "";
+	email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? "";
+	birthday = localStorage.getItem(`${STORAGE_KEY_PREFIX}birthday`) ?? "";
+	postalCode = localStorage.getItem(`${STORAGE_KEY_PREFIX}postalCode`) ?? "";
+	prefecture = localStorage.getItem(`${STORAGE_KEY_PREFIX}prefecture`) ?? "";
+	address = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? "";
+	willUseShuttleBus =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? "";
+}
 </script>
 
 <div class="bg-bgGray min-h-screen">

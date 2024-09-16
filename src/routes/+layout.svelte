@@ -1,6 +1,5 @@
 <script lang="ts">
 import "../app.css";
-import { replaceState } from "$app/navigation";
 import ky from "ky";
 import { onMount } from "svelte";
 import { STORAGE_KEY_PREFIX } from "../const";
@@ -17,6 +16,7 @@ onMount(async () => {
 	loading.set(true);
 
 	// URLクエリからゲストIDを取得
+	// テストを容易にするため、ローカルストレージ等からのゲスト情報の復元は行わず、あくまでURLクエリをゲスト情報の信頼できる情報源とする
 	const guestIdResult = getGuestIdFromUrl();
 	if (!guestIdResult) {
 		guestNotFound.set(true);
@@ -46,12 +46,14 @@ function updateGuestData(guest: Guest) {
 	familyName.set(guest.familyName);
 	givenName.set(guest.givenName);
 
+	// フォーム送信後にリダイレクトされる完了ページでゲスト情報を表示できるよう、ゲスト情報をブラウザに保存
 	localStorage.setItem(`${STORAGE_KEY_PREFIX}guestId`, guest.id);
 	localStorage.setItem(`${STORAGE_KEY_PREFIX}familyName`, guest.familyName);
 	localStorage.setItem(`${STORAGE_KEY_PREFIX}givenName`, guest.givenName);
 }
 
-function getGuestIdFromUrl() {
+/** URLクエリからゲストIDを取得 */
+function getGuestIdFromUrl(): string | null {
 	const url = new URL(location.href);
 	const queryParams = new URLSearchParams(url.search);
 	return queryParams.get("g");
