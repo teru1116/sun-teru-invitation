@@ -9,7 +9,6 @@ import {
 	familyName,
 	givenName,
 	guestId,
-	guestNotFound,
 	loading,
 } from "../stores";
 
@@ -20,7 +19,7 @@ onMount(async () => {
 	// テストを容易にするため、ローカルストレージ等からのゲスト情報の復元は行わず、あくまでURLクエリをゲスト情報の信頼できる情報源とする
 	const guestIdResult = getGuestIdFromUrl();
 	if (!guestIdResult) {
-		guestNotFound.set(true);
+		loading.set(false);
 		return console.error("ゲストが指定されていません");
 	}
 
@@ -31,14 +30,14 @@ onMount(async () => {
 			)
 			.json();
 		updateGuestData(json);
-
-		loading.set(false);
 	} catch (e) {
 		// ゲストの特定に関するエラーはユーザー側で復帰できないため、エラーの種類で処理を分けることはしない
 		// ゲストの特定に失敗した場合、ユーザー自身で氏名を入力してもらう選択肢もあるが、本来招待状は意図した人にだけ送信するものであり、意図しない人がURLを知って入力してしまうと出席者の集計が困難になるため
 		// ゲストの特定失敗は招待状自体利用できないようにし、開発者が対応するものとする
-		guestNotFound.set(true);
 		// Sentryへエラーを送信
+		console.error(e);
+	} finally {
+		loading.set(false);
 	}
 });
 

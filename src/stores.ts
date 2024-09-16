@@ -11,5 +11,4 @@ export const guestId = writable<string | null>(null);
 export const familyName = writable<string | null>(null);
 export const givenName = writable<string | null>(null);
 export const completed = writable(false);
-export const loading = writable(false);
-export const guestNotFound = writable(false);
+export const loading = writable(true);
