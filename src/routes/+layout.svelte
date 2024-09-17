@@ -5,11 +5,19 @@ import { onMount } from "svelte";
 import { STORAGE_KEY_PREFIX } from "../const";
 import {
 	type Guest,
+	address,
+	birthday,
 	completed,
+	email,
 	familyName,
 	givenName,
 	guestId,
 	loading,
+	phoneNumber,
+	postalCode,
+	prefecture,
+	willAttend,
+	willUseShuttleBus,
 } from "../stores";
 
 onMount(async () => {
@@ -46,6 +54,14 @@ function updateGuestData(guest: Guest) {
 	familyName.set(guest.familyName);
 	givenName.set(guest.givenName);
 	completed.set(guest.completed);
+	phoneNumber.set(guest.phoneNumber);
+	email.set(guest.email);
+	birthday.set(guest.birthday);
+	postalCode.set(guest.postalCode);
+	prefecture.set(guest.prefecture);
+	address.set(guest.address);
+	willAttend.set(guest.willAttend);
+	willUseShuttleBus.set(guest.willUseShuttleBus);
 
 	// フォーム送信後にリダイレクトされる完了ページでゲスト情報を表示できるよう、ゲストIDをブラウザに保存
 	// 再度アクセスした場合はまたURLクエリをゲストIDの情報源とするため、ゲストIDは永続化しないようSessionStorageを使う
