@@ -4,17 +4,30 @@ import { onDestroy, onMount } from "svelte";
 import AfterAnswerContent from "../../components/after-answer-content.svelte";
 import FooterDefault from "../../components/footer-default.svelte";
 import { STORAGE_KEY_PREFIX } from "../../const";
-import { type Guest, familyName, givenName, guestId } from "../../stores";
+import {
+	type Guest,
+	address,
+	birthday,
+	email,
+	familyName,
+	givenName,
+	guestId,
+	phoneNumber,
+	postalCode,
+	prefecture,
+	willAttend,
+	willUseShuttleBus,
+} from "../../stores";
 
 let id: string | null = null;
-let willAttend = "";
-let phoneNumber = "";
-let email = "";
-let birthday = "";
-let postalCode = "";
-let prefecture = "";
-let address = "";
-let willUseShuttleBus = "";
+let willAttendValue = "";
+let phoneNumberValue = "";
+let emailValue = "";
+let birthdayValue = "";
+let postalCodeValue = "";
+let prefectureValue = "";
+let addressValue = "";
+let willUseShuttleBusValue = "";
 
 onMount(async () => {
 	// src/routes/+layout.svelte で保存していたURLクエリのゲストIDを取得
@@ -35,14 +48,14 @@ onMount(async () => {
 			.post("https://sun-teru-wedding.com/api/answer", {
 				json: {
 					guestId: id,
-					willAttend,
-					phoneNumber,
-					email,
-					birthday,
-					postalCode,
-					prefecture,
-					address,
-					willUseShuttleBus,
+					willAttend: willAttendValue,
+					phoneNumber: phoneNumberValue,
+					email: emailValue,
+					birthday: birthdayValue,
+					postalCode: postalCodeValue,
+					prefecture: prefectureValue,
+					address: addressValue,
+					willUseShuttleBus: willUseShuttleBusValue,
 				},
 			})
 			.json(),
@@ -61,15 +74,30 @@ onDestroy(() => {
 });
 
 function restoreFormData() {
-	willAttend = localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? "";
-	phoneNumber = localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? "";
-	email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? "";
-	birthday = localStorage.getItem(`${STORAGE_KEY_PREFIX}birthday`) ?? "";
-	postalCode = localStorage.getItem(`${STORAGE_KEY_PREFIX}postalCode`) ?? "";
-	prefecture = localStorage.getItem(`${STORAGE_KEY_PREFIX}prefecture`) ?? "";
-	address = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? "";
-	willUseShuttleBus =
+	// フォーム入力時にローカルストレージにセットしていた値を復元
+	willAttendValue =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}willAttend`) ?? "";
+	phoneNumberValue =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}phoneNumber`) ?? "";
+	emailValue = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? "";
+	birthdayValue = localStorage.getItem(`${STORAGE_KEY_PREFIX}birthday`) ?? "";
+	postalCodeValue =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}postalCode`) ?? "";
+	prefectureValue =
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}prefecture`) ?? "";
+	addressValue = localStorage.getItem(`${STORAGE_KEY_PREFIX}address`) ?? "";
+	willUseShuttleBusValue =
 		localStorage.getItem(`${STORAGE_KEY_PREFIX}willUseShuttleBus`) ?? "";
+
+	// ゲスト情報を表示できるようストアにセット
+	willAttend.set(willAttendValue);
+	phoneNumber.set(phoneNumberValue);
+	email.set(emailValue);
+	birthday.set(birthdayValue);
+	postalCode.set(postalCodeValue);
+	prefecture.set(prefectureValue);
+	address.set(addressValue);
+	willUseShuttleBus.set(willUseShuttleBusValue);
 }
 </script>
 
