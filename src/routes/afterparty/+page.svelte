@@ -4,6 +4,7 @@ import FooterDefault from "../../components/footer-default.svelte";
 import AccessList from "./components/access-list.svelte";
 import GoogleMapSection from "./components/googlemap.svelte";
 import InformationList from "./components/information-list.svelte";
+import PaymentInformation from "./components/payment-information.svelte";
 </script>
 
 <div class="bg-bgGray">
@@ -25,6 +26,9 @@ import InformationList from "./components/information-list.svelte";
       </section>
       <section class="mb-10">
         <InformationList />
+      </section>
+      <section class="mb-10">
+        <PaymentInformation />
       </section>
     </div>
     <div class="sm:hidden">
