@@ -13,12 +13,13 @@ import PaymentInformation from "./components/payment-information.svelte";
     <div class="px-4 sm:max-w-[800px] sm:mx-auto">
       <section class="mb-10 -mt-10">
         <p class="text-center text-textBlack">
-          このたび 私たちは結婚式を<br>
-          挙げることになりました<br>
+          このたび 私たちは結婚式を<br class="sm:hidden">挙げることになりました<br>
           <br>
-          文面考えてもらえないだろうか<br>
-          文面考えてもらえないだろうか<br>
-          文面考えてもらえないだろうか<br>
+          つきましては 日頃仲良くしていただいている<br class="sm:hidden">皆さまに感謝の気持ちを表すため<br>
+          ささやかながら結婚式二次会の<br class="sm:hidden">パーティーを開催いたします<br>
+          <br>
+          皆さまと楽しいひとときを<br class="sm:hidden">過ごせればと思っておりますので<br>
+          ぜひご出席いただきたく存じます<br>
           <br>
           楠本輝也<br>
           新川綾菜
