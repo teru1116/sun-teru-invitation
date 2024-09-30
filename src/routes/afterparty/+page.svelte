@@ -2,6 +2,7 @@
 import FirstView from "../../components/first-view.svelte";
 import FooterDefault from "../../components/footer-default.svelte";
 import AccessList from "./components/access-list.svelte";
+import EntryForm from "./components/entry-form.svelte";
 import GoogleMapSection from "./components/googlemap.svelte";
 import InformationList from "./components/information-list.svelte";
 import PaymentInformation from "./components/payment-information.svelte";
@@ -27,6 +28,9 @@ import PaymentInformation from "./components/payment-information.svelte";
       </section>
       <section class="mb-10">
         <InformationList />
+      </section>
+      <section class="mb-10">
+        <EntryForm />
       </section>
       <section class="mb-10">
         <PaymentInformation />
