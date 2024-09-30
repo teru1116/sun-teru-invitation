@@ -20,7 +20,9 @@ function restoreFormData() {
 }
 
 async function handleSubmit() {
-	//
+	if (fullname.includes("サム太郎")) {
+		return window.alert("嘘つけ！😠");
+	}
 }
 </script>
 
