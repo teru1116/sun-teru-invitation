@@ -12,6 +12,10 @@ let fullname = "";
 function saveFormDataToLocal() {
 	localStorage.setItem(`${STORAGE_KEY_PREFIX}email`, email);
 	localStorage.setItem(`${STORAGE_KEY_PREFIX}fullname`, fullname);
+
+	if (fullname.includes("米川") && !email) {
+		email = "khaki.crea@gmail.com";
+	}
 }
 
 function restoreFormData() {
@@ -19,7 +23,7 @@ function restoreFormData() {
 	fullname = localStorage.getItem(`${STORAGE_KEY_PREFIX}fullname`) ?? "";
 }
 
-$: youAreJoker = fullname.includes("サム太郎");
+$: youAreJoker = fullname.includes("サム");
 
 async function handleSubmit() {
 	if (youAreJoker) {
@@ -39,10 +43,16 @@ async function handleSubmit() {
       {#if youAreJoker}
         <p class="text-errorRed mt-2">真面目に入力してもらっていいかな？</p>
       {/if}
+      {#if fullname.includes('米川')}
+        <p class="text-primary mt-2">よねちゃん！！パースからはるばる来てくれるのまじで嬉しすぎる😭</p>
+      {/if}
     </fieldset>
     <fieldset class="required">
       <legend>メールアドレス</legend>
       <input type="email" name="email" placeholder="example@gmail.com" autocomplete="email" required bind:value={email} on:blur={saveFormDataToLocal}>
+      {#if fullname.includes('米川') && email === 'khaki.crea@gmail.com'}
+        <p class="text-primary mt-2">メアドこれだよね？違ったら編集してもらえればと！</p>
+      {/if}
       <div class="mt-4 bg-bgGray p-4">
         <p class="text-sm leading-6 text-textGray">
           事前のご連絡や、写真・動画のアップロード先のご案内のため入力をお願いしております。
