@@ -19,8 +19,10 @@ function restoreFormData() {
 	fullname = localStorage.getItem(`${STORAGE_KEY_PREFIX}fullname`) ?? "";
 }
 
+$: youAreJoker = fullname.includes("サム太郎");
+
 async function handleSubmit() {
-	if (fullname.includes("サム太郎")) {
+	if (youAreJoker) {
 		return window.alert("嘘つけ！😠");
 	}
 }
@@ -34,6 +36,9 @@ async function handleSubmit() {
     <fieldset class="required">
       <legend>氏名</legend>
       <input type="text" name="氏名" placeholder="中原サム太郎" autocomplete="name" required bind:value={fullname} on:blur={saveFormDataToLocal}>
+      {#if youAreJoker}
+        <p class="text-errorRed mt-2">真面目に入力してもらっていいかな？</p>
+      {/if}
     </fieldset>
     <fieldset class="required">
       <legend>メールアドレス</legend>
