@@ -102,5 +102,12 @@ async function handleSubmit() {
         <div class="w-full text-center">登録する</div>
       {/if}
     </button>
+    {#if hasSent}
+      <p class="mt-4 text-sm leading-6 text-textGray">
+        数秒以内に確認メールが届きます<br>
+        メールが届かない場合 上記のメールアドレスを確認して再度ボタンを押してください<br>
+        それでも届かない場合は お手数ですがこのページの一番下のフォームから新郎にお問い合わせください
+      </p>
+    {/if}
   </form>
 </div>
