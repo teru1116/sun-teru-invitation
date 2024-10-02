@@ -1,35 +1,34 @@
 <script lang="ts">
-import ky, { HTTPError } from "ky";
+import ky from "ky";
 import { onMount } from "svelte";
+import { writable } from "svelte/store";
 import { STORAGE_KEY_PREFIX } from "../../../const";
+import { getMessageForYou } from "../composables/message-for-you";
 
 onMount(() => {
 	restoreFormData();
 });
 
+const fullname = writable("");
+$: messageForYou = getMessageForYou($fullname);
+
 let email = "";
-let fullname = "";
 let sending = false;
 let hasSent = false;
-let error: string | null = null;
 
 function saveFormDataToLocal() {
 	localStorage.setItem(`${STORAGE_KEY_PREFIX}email`, email);
-	localStorage.setItem(`${STORAGE_KEY_PREFIX}fullname`, fullname);
-
-	if (fullname.includes("米川") && !email) {
-		email = "khaki.crea@gmail.com";
-	}
+	localStorage.setItem(`${STORAGE_KEY_PREFIX}fullname`, $fullname);
 }
 
 function restoreFormData() {
 	email = localStorage.getItem(`${STORAGE_KEY_PREFIX}email`) ?? "";
-	fullname =
-		localStorage.getItem(`${STORAGE_KEY_PREFIX}fullname`) ??
-		`${localStorage.getItem(`${STORAGE_KEY_PREFIX}familyname`) ?? ""}${localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? ""}`;
-}
 
-$: youAreJoker = fullname.includes("サム");
+	fullname.set(
+		localStorage.getItem(`${STORAGE_KEY_PREFIX}fullname`) ??
+			`${localStorage.getItem(`${STORAGE_KEY_PREFIX}familyname`) ?? ""}${localStorage.getItem(`${STORAGE_KEY_PREFIX}givenName`) ?? ""}`,
+	);
+}
 
 async function handleSubmit() {
 	sending = true;
@@ -38,7 +37,7 @@ async function handleSubmit() {
 		await ky
 			.post("https://sun-teru-wedding.com/api/afterparty", {
 				json: {
-					fullname,
+					fullname: $fullname,
 					email,
 				},
 			})
@@ -60,20 +59,22 @@ async function handleSubmit() {
   <form on:submit|preventDefault={handleSubmit}>
     <fieldset class="required">
       <legend>氏名</legend>
-      <input type="text" name="氏名" placeholder="中原サム太郎" autocomplete="name" required bind:value={fullname} on:blur={saveFormDataToLocal}>
-      {#if youAreJoker}
-        <p class="text-errorRed mt-2">真面目に入力してもらっていいかな？</p>
+      <input type="text" name="氏名" placeholder="中原サム太郎" autocomplete="name" required bind:value={$fullname} on:blur={saveFormDataToLocal}>
+      {#if messageForYou}
+        <p class="text-primary mt-2">{messageForYou}</p>
       {/if}
-      {#if fullname.includes('米川')}
-        <p class="text-primary mt-2">よねちゃん！！パースからはるばる来てくれるのまじで嬉しすぎる😭</p>
-      {/if}
+      <div class="mt-4 bg-bgGray p-4">
+        <p class="text-sm leading-6 text-textGray">
+          漢字のフルネームでお願いします
+          {#if $fullname.includes('韓')}
+            ※ごめん！スンジは片仮名でもよかったね！
+          {/if}
+        </p>
+      </div>
     </fieldset>
     <fieldset class="required">
       <legend>メールアドレス</legend>
       <input type="email" name="email" placeholder="example@gmail.com" autocomplete="email" required bind:value={email} on:blur={saveFormDataToLocal}>
-      {#if fullname.includes('米川') && email === 'khaki.crea@gmail.com'}
-        <p class="text-primary mt-2">メアドこれだよね？違ったら編集してもらえればと！</p>
-      {/if}
       <div class="mt-4 bg-bgGray p-4">
         <p class="text-sm leading-6 text-textGray">
           事前のご連絡や 写真・動画のアップロード先のご案内のため メールアドレスの入力をお願いしております
@@ -81,7 +82,7 @@ async function handleSubmit() {
       </div>
     </fieldset>
     <button
-      disabled={!fullname || !email || sending}
+      disabled={!$fullname || !email || sending}
       class="flex items-center gap-x-w w-full sm:w-[412px] sm:mx-auto sm:block bg-primary disabled:bg-[#6e7881] hover:opacity-80 text-white py-4 px-6 rounded font-bold tracking-wide"
     >
       {#if !sending && !hasSent}
