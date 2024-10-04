@@ -28,11 +28,16 @@ onDestroy(() => {
 async function submit() {
 	sending = true;
 
+	// ゲストIDが存在しない場合は二次会のみのゲスト
+	// フルネームをゲストIDの代わりに送信する
+	const guestIdInput =
+		id ?? localStorage.getItem(`${STORAGE_KEY_PREFIX}fullname`);
+
 	try {
 		await ky
 			.post("https://sun-teru-wedding.com/api/feedback", {
 				json: {
-					guestId: id,
+					guestId: guestIdInput,
 					message,
 				},
 			})
