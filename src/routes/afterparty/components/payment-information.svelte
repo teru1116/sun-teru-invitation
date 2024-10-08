@@ -22,6 +22,9 @@
       <a href="https://qr.paypay.ne.jp/p2p01_5M0Ls9tJRuHGrlAh" target="_blank" class="underline text-primary fill-primary tracking-wide break-words whitespace-normal">
         https://qr.paypay.ne.jp/p2p01_5M0Ls9tJRuHGrlAh
       </a>
+      <p class="text-errorRed mt-2">
+        ※重要 お支払いの際はコメントに必ずお名前をご入力ください
+      </p>
       <p class="text-sm text-textGray mt-2">
         パソコンでこのページを開いている方は お手数ですがPayPayアプリがインストールされているスマートフォンで上記のリンクを開いてください
       </p>
