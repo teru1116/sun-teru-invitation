@@ -39,6 +39,7 @@ const messageForYou = [
   ["啓介", "たしゅ！まさか中原に来るとは！笑"],
   ["哲志", "てっちゃん、またテニスとかワーケーションとかしよ！！"],
   ["めぐみ", "めぐさん会えるの楽しみにしてます！！"],
+  ["絹", "まあきぬちゃんは100%来てくれると思ってた！"],
 ];
 
 export function getMessageForYou(fullname: string): string | undefined {
