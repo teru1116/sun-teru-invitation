@@ -19,8 +19,8 @@
       <p>
         下記の決済リンクからお支払いに進んでください（金額: 7,500円）
       </p>
-      <a href="https://qr.paypay.ne.jp/p2p01_4RVLxVFTlhApFepv" target="_blank" class="underline text-primary fill-primary tracking-wide break-words whitespace-normal">
-        https://qr.paypay.ne.jp/p2p01_4RVLxVFTlhApFepv
+      <a href="https://qr.paypay.ne.jp/p2p01_OTMph6LSpG3p6Ysm" target="_blank" class="underline text-primary fill-primary tracking-wide break-words whitespace-normal">
+        https://qr.paypay.ne.jp/p2p01_OTMph6LSpG3p6Ysm
       </a>
       <p class="text-errorRed mt-2">
         ※重要 お支払いの際はコメントに必ずお名前をご入力ください
